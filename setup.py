@@ -34,7 +34,7 @@ setup(
     name=NAME,
     version=VERSION,
     description="Logto API references",
-    author="OpenAPI Generator community",
+    author="Hussaini Usman",
     author_email="hussainmaina27@gmail.com",
     url="https://github.com/Housain-maina/py-logto",
     keywords=["OpenAPI", "OpenAPI-Generator", "Logto API references"],
