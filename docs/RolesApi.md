@@ -1,65 +1,72 @@
 # py_logto.RolesApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_roles_get**](RolesApi.md#api_roles_get) | **GET** /api/roles | Get roles
-[**api_roles_id_applications_application_id_delete**](RolesApi.md#api_roles_id_applications_application_id_delete) | **DELETE** /api/roles/{id}/applications/{applicationId} | Remove role from application
-[**api_roles_id_applications_get**](RolesApi.md#api_roles_id_applications_get) | **GET** /api/roles/{id}/applications | Get role applications
-[**api_roles_id_applications_post**](RolesApi.md#api_roles_id_applications_post) | **POST** /api/roles/{id}/applications | Assign role to applications
-[**api_roles_id_delete**](RolesApi.md#api_roles_id_delete) | **DELETE** /api/roles/{id} | Delete role
-[**api_roles_id_get**](RolesApi.md#api_roles_id_get) | **GET** /api/roles/{id} | Get role
-[**api_roles_id_patch**](RolesApi.md#api_roles_id_patch) | **PATCH** /api/roles/{id} | Update role
-[**api_roles_id_scopes_get**](RolesApi.md#api_roles_id_scopes_get) | **GET** /api/roles/{id}/scopes | Get role scopes
-[**api_roles_id_scopes_post**](RolesApi.md#api_roles_id_scopes_post) | **POST** /api/roles/{id}/scopes | Link scopes to role
-[**api_roles_id_scopes_scope_id_delete**](RolesApi.md#api_roles_id_scopes_scope_id_delete) | **DELETE** /api/roles/{id}/scopes/{scopeId} | Unlink scope from role
-[**api_roles_id_users_get**](RolesApi.md#api_roles_id_users_get) | **GET** /api/roles/{id}/users | Get role users
-[**api_roles_id_users_post**](RolesApi.md#api_roles_id_users_post) | **POST** /api/roles/{id}/users | Assign role to users
-[**api_roles_id_users_user_id_delete**](RolesApi.md#api_roles_id_users_user_id_delete) | **DELETE** /api/roles/{id}/users/{userId} | Remove role from user
-[**api_roles_post**](RolesApi.md#api_roles_post) | **POST** /api/roles | Create a role
+[**create_role**](RolesApi.md#create_role) | **POST** /api/roles | Create a role
+[**create_role_application**](RolesApi.md#create_role_application) | **POST** /api/roles/{id}/applications | Assign role to applications
+[**create_role_scope**](RolesApi.md#create_role_scope) | **POST** /api/roles/{id}/scopes | Link scopes to role
+[**create_role_user**](RolesApi.md#create_role_user) | **POST** /api/roles/{id}/users | Assign role to users
+[**delete_role**](RolesApi.md#delete_role) | **DELETE** /api/roles/{id} | Delete role
+[**delete_role_application**](RolesApi.md#delete_role_application) | **DELETE** /api/roles/{id}/applications/{applicationId} | Remove role from application
+[**delete_role_scope**](RolesApi.md#delete_role_scope) | **DELETE** /api/roles/{id}/scopes/{scopeId} | Unlink scope from role
+[**delete_role_user**](RolesApi.md#delete_role_user) | **DELETE** /api/roles/{id}/users/{userId} | Remove role from user
+[**get_role**](RolesApi.md#get_role) | **GET** /api/roles/{id} | Get role
+[**list_role_applications**](RolesApi.md#list_role_applications) | **GET** /api/roles/{id}/applications | Get role applications
+[**list_role_scopes**](RolesApi.md#list_role_scopes) | **GET** /api/roles/{id}/scopes | Get role scopes
+[**list_role_users**](RolesApi.md#list_role_users) | **GET** /api/roles/{id}/users | Get role users
+[**list_roles**](RolesApi.md#list_roles) | **GET** /api/roles | Get roles
+[**update_role**](RolesApi.md#update_role) | **PATCH** /api/roles/{id} | Update role
 
 
-# **api_roles_get**
-> List[ApiRolesGet200ResponseInner] api_roles_get(exclude_user_id=exclude_user_id, exclude_application_id=exclude_application_id, type=type, page=page, page_size=page_size)
+# **create_role**
+> ListApplicationRoles200ResponseInner create_role(create_role_request)
 
-Get roles
+Create a role
 
-Get roles with filters and pagination.
+Create a new role with the given data.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_roles_get200_response_inner import ApiRolesGet200ResponseInner
+from py_logto.models.create_role_request import CreateRoleRequest
+from py_logto.models.list_application_roles200_response_inner import ListApplicationRoles200ResponseInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.RolesApi(api_client)
-    exclude_user_id = 'exclude_user_id_example' # str | Exclude roles assigned to a user. (optional)
-    exclude_application_id = 'exclude_application_id_example' # str | Exclude roles assigned to an application. (optional)
-    type = 'type_example' # str | Filter by role type. (optional)
-    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
-    page_size = 20 # int | Entries per page. (optional) (default to 20)
+    create_role_request = py_logto.CreateRoleRequest() # CreateRoleRequest | 
 
     try:
-        # Get roles
-        api_response = api_instance.api_roles_get(exclude_user_id=exclude_user_id, exclude_application_id=exclude_application_id, type=type, page=page, page_size=page_size)
-        print("The response of RolesApi->api_roles_get:\n")
+        # Create a role
+        api_response = api_instance.create_role(create_role_request)
+        print("The response of RolesApi->create_role:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RolesApi->api_roles_get: %s\n" % e)
+        print("Exception when calling RolesApi->create_role: %s\n" % e)
 ```
 
 
@@ -69,186 +76,36 @@ with py_logto.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **exclude_user_id** | **str**| Exclude roles assigned to a user. | [optional] 
- **exclude_application_id** | **str**| Exclude roles assigned to an application. | [optional] 
- **type** | **str**| Filter by role type. | [optional] 
- **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
- **page_size** | **int**| Entries per page. | [optional] [default to 20]
+ **create_role_request** | [**CreateRoleRequest**](CreateRoleRequest.md)|  | 
 
 ### Return type
 
-[**List[ApiRolesGet200ResponseInner]**](ApiRolesGet200ResponseInner.md)
+[**ListApplicationRoles200ResponseInner**](ListApplicationRoles200ResponseInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | An array of roles matching the filters. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_applications_application_id_delete**
-> api_roles_id_applications_application_id_delete(id, application_id)
-
-Remove role from application
-
-Remove the role from an application with the given ID.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-    application_id = 'application_id_example' # str | The unique identifier of the application.
-
-    try:
-        # Remove role from application
-        api_instance.api_roles_id_applications_application_id_delete(id, application_id)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_applications_application_id_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
- **application_id** | **str**| The unique identifier of the application. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | The role was removed from the application. |  -  |
+**200** | The created role. |  -  |
 **400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
 **404** | Not Found |  -  |
+**422** | Unprocessable Content |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_roles_id_applications_get**
-> List[ApiApplicationsGet200ResponseInner] api_roles_id_applications_get(id, page=page, page_size=page_size)
-
-Get role applications
-
-Get applications that have the role assigned with pagination.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_applications_get200_response_inner import ApiApplicationsGet200ResponseInner
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
-    page_size = 20 # int | Entries per page. (optional) (default to 20)
-
-    try:
-        # Get role applications
-        api_response = api_instance.api_roles_id_applications_get(id, page=page, page_size=page_size)
-        print("The response of RolesApi->api_roles_id_applications_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_applications_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
- **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
- **page_size** | **int**| Entries per page. | [optional] [default to 20]
-
-### Return type
-
-[**List[ApiApplicationsGet200ResponseInner]**](ApiApplicationsGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | An array of applications that have the role assigned. |  -  |
-**204** | No Content |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_applications_post**
-> api_roles_id_applications_post(id, api_roles_id_applications_post_request)
+# **create_role_application**
+> create_role_application(id, create_role_application_request)
 
 Assign role to applications
 
@@ -256,32 +113,42 @@ Assign a role to a list of applications. The role must have the type `Applicatio
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_roles_id_applications_post_request import ApiRolesIdApplicationsPostRequest
+from py_logto.models.create_role_application_request import CreateRoleApplicationRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.RolesApi(api_client)
     id = 'id_example' # str | The unique identifier of the role.
-    api_roles_id_applications_post_request = py_logto.ApiRolesIdApplicationsPostRequest() # ApiRolesIdApplicationsPostRequest | 
+    create_role_application_request = py_logto.CreateRoleApplicationRequest() # CreateRoleApplicationRequest | 
 
     try:
         # Assign role to applications
-        api_instance.api_roles_id_applications_post(id, api_roles_id_applications_post_request)
+        api_instance.create_role_application(id, create_role_application_request)
     except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_applications_post: %s\n" % e)
+        print("Exception when calling RolesApi->create_role_application: %s\n" % e)
 ```
 
 
@@ -292,7 +159,7 @@ with py_logto.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier of the role. | 
- **api_roles_id_applications_post_request** | [**ApiRolesIdApplicationsPostRequest**](ApiRolesIdApplicationsPostRequest.md)|  | 
+ **create_role_application_request** | [**CreateRoleApplicationRequest**](CreateRoleApplicationRequest.md)|  | 
 
 ### Return type
 
@@ -300,7 +167,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -320,301 +187,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_roles_id_delete**
-> api_roles_id_delete(id)
-
-Delete role
-
-Delete a role with the given ID.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-
-    try:
-        # Delete role
-        api_instance.api_roles_id_delete(id)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | The role was deleted. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_get**
-> ApiApplicationsApplicationIdRolesGet200ResponseInner api_roles_id_get(id)
-
-Get role
-
-Get role details by ID.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_applications_application_id_roles_get200_response_inner import ApiApplicationsApplicationIdRolesGet200ResponseInner
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-
-    try:
-        # Get role
-        api_response = api_instance.api_roles_id_get(id)
-        print("The response of RolesApi->api_roles_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
-
-### Return type
-
-[**ApiApplicationsApplicationIdRolesGet200ResponseInner**](ApiApplicationsApplicationIdRolesGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details of the role. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_patch**
-> ApiApplicationsApplicationIdRolesGet200ResponseInner api_roles_id_patch(id, api_roles_id_patch_request)
-
-Update role
-
-Update role details. This method performs a partial update.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_applications_application_id_roles_get200_response_inner import ApiApplicationsApplicationIdRolesGet200ResponseInner
-from py_logto.models.api_roles_id_patch_request import ApiRolesIdPatchRequest
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-    api_roles_id_patch_request = py_logto.ApiRolesIdPatchRequest() # ApiRolesIdPatchRequest | 
-
-    try:
-        # Update role
-        api_response = api_instance.api_roles_id_patch(id, api_roles_id_patch_request)
-        print("The response of RolesApi->api_roles_id_patch:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_patch: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
- **api_roles_id_patch_request** | [**ApiRolesIdPatchRequest**](ApiRolesIdPatchRequest.md)|  | 
-
-### Return type
-
-[**ApiApplicationsApplicationIdRolesGet200ResponseInner**](ApiApplicationsApplicationIdRolesGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The updated role. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-**422** | Unprocessable Content |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_scopes_get**
-> List[ApiRolesIdScopesGet200ResponseInner] api_roles_id_scopes_get(id, page=page, page_size=page_size)
-
-Get role scopes
-
-Get API resource scopes (permissions) linked with a role.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_roles_id_scopes_get200_response_inner import ApiRolesIdScopesGet200ResponseInner
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
-    page_size = 20 # int | Entries per page. (optional) (default to 20)
-
-    try:
-        # Get role scopes
-        api_response = api_instance.api_roles_id_scopes_get(id, page=page, page_size=page_size)
-        print("The response of RolesApi->api_roles_id_scopes_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_scopes_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
- **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
- **page_size** | **int**| Entries per page. | [optional] [default to 20]
-
-### Return type
-
-[**List[ApiRolesIdScopesGet200ResponseInner]**](ApiRolesIdScopesGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | An array of API resource scopes linked with the role. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_scopes_post**
-> List[ApiResourcesGet200ResponseInnerScopesInner] api_roles_id_scopes_post(id, api_roles_id_scopes_post_request)
+# **create_role_scope**
+> create_role_scope(id, create_role_scope_request)
 
 Link scopes to role
 
@@ -622,35 +196,42 @@ Link a list of API resource scopes (permissions) to a role. The original linked 
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_resources_get200_response_inner_scopes_inner import ApiResourcesGet200ResponseInnerScopesInner
-from py_logto.models.api_roles_id_scopes_post_request import ApiRolesIdScopesPostRequest
+from py_logto.models.create_role_scope_request import CreateRoleScopeRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.RolesApi(api_client)
     id = 'id_example' # str | The unique identifier of the role.
-    api_roles_id_scopes_post_request = py_logto.ApiRolesIdScopesPostRequest() # ApiRolesIdScopesPostRequest | 
+    create_role_scope_request = py_logto.CreateRoleScopeRequest() # CreateRoleScopeRequest | 
 
     try:
         # Link scopes to role
-        api_response = api_instance.api_roles_id_scopes_post(id, api_roles_id_scopes_post_request)
-        print("The response of RolesApi->api_roles_id_scopes_post:\n")
-        pprint(api_response)
+        api_instance.create_role_scope(id, create_role_scope_request)
     except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_scopes_post: %s\n" % e)
+        print("Exception when calling RolesApi->create_role_scope: %s\n" % e)
 ```
 
 
@@ -661,26 +242,27 @@ with py_logto.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier of the role. | 
- **api_roles_id_scopes_post_request** | [**ApiRolesIdScopesPostRequest**](ApiRolesIdScopesPostRequest.md)|  | 
+ **create_role_scope_request** | [**CreateRoleScopeRequest**](CreateRoleScopeRequest.md)|  | 
 
 ### Return type
 
-[**List[ApiResourcesGet200ResponseInnerScopesInner]**](ApiResourcesGet200ResponseInnerScopesInner.md)
+void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The role was linked to the scopes successfully. |  -  |
+**201** | Created |  -  |
 **400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
@@ -689,155 +271,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_roles_id_scopes_scope_id_delete**
-> api_roles_id_scopes_scope_id_delete(id, scope_id)
-
-Unlink scope from role
-
-Unlink an API resource scope (permission) from a role with the given ID.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-    scope_id = 'scope_id_example' # str | The unique identifier of the scope.
-
-    try:
-        # Unlink scope from role
-        api_instance.api_roles_id_scopes_scope_id_delete(id, scope_id)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_scopes_scope_id_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
- **scope_id** | **str**| The unique identifier of the scope. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | The API resource scope was unlinked from the role. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_users_get**
-> List[ApiUsersUserIdPatch200Response] api_roles_id_users_get(id, page=page, page_size=page_size)
-
-Get role users
-
-Get users who have the role assigned with pagination.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_users_user_id_patch200_response import ApiUsersUserIdPatch200Response
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.RolesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the role.
-    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
-    page_size = 20 # int | Entries per page. (optional) (default to 20)
-
-    try:
-        # Get role users
-        api_response = api_instance.api_roles_id_users_get(id, page=page, page_size=page_size)
-        print("The response of RolesApi->api_roles_id_users_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_users_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the role. | 
- **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
- **page_size** | **int**| Entries per page. | [optional] [default to 20]
-
-### Return type
-
-[**List[ApiUsersUserIdPatch200Response]**](ApiUsersUserIdPatch200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | An array of users who have the role assigned. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_roles_id_users_post**
-> api_roles_id_users_post(id, api_roles_id_users_post_request)
+# **create_role_user**
+> create_role_user(id, create_role_user_request)
 
 Assign role to users
 
@@ -845,32 +280,42 @@ Assign a role to a list of users. The role must have the type `User`.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_roles_id_users_post_request import ApiRolesIdUsersPostRequest
+from py_logto.models.create_role_user_request import CreateRoleUserRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.RolesApi(api_client)
     id = 'id_example' # str | The unique identifier of the role.
-    api_roles_id_users_post_request = py_logto.ApiRolesIdUsersPostRequest() # ApiRolesIdUsersPostRequest | 
+    create_role_user_request = py_logto.CreateRoleUserRequest() # CreateRoleUserRequest | 
 
     try:
         # Assign role to users
-        api_instance.api_roles_id_users_post(id, api_roles_id_users_post_request)
+        api_instance.create_role_user(id, create_role_user_request)
     except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_users_post: %s\n" % e)
+        print("Exception when calling RolesApi->create_role_user: %s\n" % e)
 ```
 
 
@@ -881,7 +326,7 @@ with py_logto.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier of the role. | 
- **api_roles_id_users_post_request** | [**ApiRolesIdUsersPostRequest**](ApiRolesIdUsersPostRequest.md)|  | 
+ **create_role_user_request** | [**CreateRoleUserRequest**](CreateRoleUserRequest.md)|  | 
 
 ### Return type
 
@@ -889,7 +334,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -909,8 +354,249 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_roles_id_users_user_id_delete**
-> api_roles_id_users_user_id_delete(id, user_id)
+# **delete_role**
+> delete_role(id)
+
+Delete role
+
+Delete a role with the given ID.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the role.
+
+    try:
+        # Delete role
+        api_instance.delete_role(id)
+    except Exception as e:
+        print("Exception when calling RolesApi->delete_role: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the role. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The role was deleted. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_role_application**
+> delete_role_application(id, application_id)
+
+Remove role from application
+
+Remove the role from an application with the given ID.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the role.
+    application_id = 'application_id_example' # str | The unique identifier of the application.
+
+    try:
+        # Remove role from application
+        api_instance.delete_role_application(id, application_id)
+    except Exception as e:
+        print("Exception when calling RolesApi->delete_role_application: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the role. | 
+ **application_id** | **str**| The unique identifier of the application. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The role was removed from the application. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_role_scope**
+> delete_role_scope(id, scope_id)
+
+Unlink scope from role
+
+Unlink an API resource scope (permission) from a role with the given ID.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the role.
+    scope_id = 'scope_id_example' # str | The unique identifier of the scope.
+
+    try:
+        # Unlink scope from role
+        api_instance.delete_role_scope(id, scope_id)
+    except Exception as e:
+        print("Exception when calling RolesApi->delete_role_scope: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the role. | 
+ **scope_id** | **str**| The unique identifier of the scope. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The API resource scope was unlinked from the role. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_role_user**
+> delete_role_user(id, user_id)
 
 Remove role from user
 
@@ -918,18 +604,28 @@ Remove a role from a user with the given ID.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -940,9 +636,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Remove role from user
-        api_instance.api_roles_id_users_user_id_delete(id, user_id)
+        api_instance.delete_role_user(id, user_id)
     except Exception as e:
-        print("Exception when calling RolesApi->api_roles_id_users_user_id_delete: %s\n" % e)
+        print("Exception when calling RolesApi->delete_role_user: %s\n" % e)
 ```
 
 
@@ -961,7 +657,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -980,43 +676,52 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_roles_post**
-> ApiApplicationsApplicationIdRolesGet200ResponseInner api_roles_post(api_roles_post_request)
+# **get_role**
+> ListApplicationRoles200ResponseInner get_role(id)
 
-Create a role
+Get role
 
-Create a new role with the given data.
+Get role details by ID.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_applications_application_id_roles_get200_response_inner import ApiApplicationsApplicationIdRolesGet200ResponseInner
-from py_logto.models.api_roles_post_request import ApiRolesPostRequest
+from py_logto.models.list_application_roles200_response_inner import ListApplicationRoles200ResponseInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.RolesApi(api_client)
-    api_roles_post_request = py_logto.ApiRolesPostRequest() # ApiRolesPostRequest | 
+    id = 'id_example' # str | The unique identifier of the role.
 
     try:
-        # Create a role
-        api_response = api_instance.api_roles_post(api_roles_post_request)
-        print("The response of RolesApi->api_roles_post:\n")
+        # Get role
+        api_response = api_instance.get_role(id)
+        print("The response of RolesApi->get_role:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RolesApi->api_roles_post: %s\n" % e)
+        print("Exception when calling RolesApi->get_role: %s\n" % e)
 ```
 
 
@@ -1026,15 +731,448 @@ with py_logto.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **api_roles_post_request** | [**ApiRolesPostRequest**](ApiRolesPostRequest.md)|  | 
+ **id** | **str**| The unique identifier of the role. | 
 
 ### Return type
 
-[**ApiApplicationsApplicationIdRolesGet200ResponseInner**](ApiApplicationsApplicationIdRolesGet200ResponseInner.md)
+[**ListApplicationRoles200ResponseInner**](ListApplicationRoles200ResponseInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details of the role. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_role_applications**
+> List[ListApplications200ResponseInner] list_role_applications(id, page=page, page_size=page_size)
+
+Get role applications
+
+Get applications that have the role assigned with pagination.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_applications200_response_inner import ListApplications200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the role.
+    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
+    page_size = 20 # int | Entries per page. (optional) (default to 20)
+
+    try:
+        # Get role applications
+        api_response = api_instance.list_role_applications(id, page=page, page_size=page_size)
+        print("The response of RolesApi->list_role_applications:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RolesApi->list_role_applications: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the role. | 
+ **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
+ **page_size** | **int**| Entries per page. | [optional] [default to 20]
+
+### Return type
+
+[**List[ListApplications200ResponseInner]**](ListApplications200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of applications that have the role assigned. |  -  |
+**204** | No Content |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_role_scopes**
+> List[ListRoleScopes200ResponseInner] list_role_scopes(id, page=page, page_size=page_size)
+
+Get role scopes
+
+Get API resource scopes (permissions) linked with a role.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_role_scopes200_response_inner import ListRoleScopes200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the role.
+    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
+    page_size = 20 # int | Entries per page. (optional) (default to 20)
+
+    try:
+        # Get role scopes
+        api_response = api_instance.list_role_scopes(id, page=page, page_size=page_size)
+        print("The response of RolesApi->list_role_scopes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RolesApi->list_role_scopes: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the role. | 
+ **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
+ **page_size** | **int**| Entries per page. | [optional] [default to 20]
+
+### Return type
+
+[**List[ListRoleScopes200ResponseInner]**](ListRoleScopes200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of API resource scopes linked with the role. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_role_users**
+> List[UpdateUser200Response] list_role_users(id, page=page, page_size=page_size)
+
+Get role users
+
+Get users who have the role assigned with pagination.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.update_user200_response import UpdateUser200Response
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the role.
+    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
+    page_size = 20 # int | Entries per page. (optional) (default to 20)
+
+    try:
+        # Get role users
+        api_response = api_instance.list_role_users(id, page=page, page_size=page_size)
+        print("The response of RolesApi->list_role_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RolesApi->list_role_users: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the role. | 
+ **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
+ **page_size** | **int**| Entries per page. | [optional] [default to 20]
+
+### Return type
+
+[**List[UpdateUser200Response]**](UpdateUser200Response.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of users who have the role assigned. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_roles**
+> List[ListRoles200ResponseInner] list_roles(exclude_user_id=exclude_user_id, exclude_application_id=exclude_application_id, type=type, page=page, page_size=page_size)
+
+Get roles
+
+Get roles with filters and pagination.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_roles200_response_inner import ListRoles200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    exclude_user_id = 'exclude_user_id_example' # str | Exclude roles assigned to a user. (optional)
+    exclude_application_id = 'exclude_application_id_example' # str | Exclude roles assigned to an application. (optional)
+    type = 'type_example' # str | Filter by role type. (optional)
+    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
+    page_size = 20 # int | Entries per page. (optional) (default to 20)
+
+    try:
+        # Get roles
+        api_response = api_instance.list_roles(exclude_user_id=exclude_user_id, exclude_application_id=exclude_application_id, type=type, page=page, page_size=page_size)
+        print("The response of RolesApi->list_roles:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RolesApi->list_roles: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **exclude_user_id** | **str**| Exclude roles assigned to a user. | [optional] 
+ **exclude_application_id** | **str**| Exclude roles assigned to an application. | [optional] 
+ **type** | **str**| Filter by role type. | [optional] 
+ **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
+ **page_size** | **int**| Entries per page. | [optional] [default to 20]
+
+### Return type
+
+[**List[ListRoles200ResponseInner]**](ListRoles200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of roles matching the filters. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_role**
+> ListApplicationRoles200ResponseInner update_role(id, update_role_request)
+
+Update role
+
+Update role details. This method performs a partial update.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_application_roles200_response_inner import ListApplicationRoles200ResponseInner
+from py_logto.models.update_role_request import UpdateRoleRequest
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the role.
+    update_role_request = py_logto.UpdateRoleRequest() # UpdateRoleRequest | 
+
+    try:
+        # Update role
+        api_response = api_instance.update_role(id, update_role_request)
+        print("The response of RolesApi->update_role:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RolesApi->update_role: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the role. | 
+ **update_role_request** | [**UpdateRoleRequest**](UpdateRoleRequest.md)|  | 
+
+### Return type
+
+[**ListApplicationRoles200ResponseInner**](ListApplicationRoles200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -1045,7 +1183,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The created role. |  -  |
+**200** | The updated role. |  -  |
 **400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |

@@ -1,14 +1,14 @@
 # py_logto.SystemsApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_systems_application_get**](SystemsApi.md#api_systems_application_get) | **GET** /api/systems/application | Get the application constants.
+[**get_system_application_config**](SystemsApi.md#get_system_application_config) | **GET** /api/systems/application | Get the application constants.
 
 
-# **api_systems_application_get**
-> ApiSystemsApplicationGet200Response api_systems_application_get()
+# **get_system_application_config**
+> GetSystemApplicationConfig200Response get_system_application_config()
 
 Get the application constants.
 
@@ -16,19 +16,29 @@ Get the application constants.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_systems_application_get200_response import ApiSystemsApplicationGet200Response
+from py_logto.models.get_system_application_config200_response import GetSystemApplicationConfig200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -37,11 +47,11 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Get the application constants.
-        api_response = api_instance.api_systems_application_get()
-        print("The response of SystemsApi->api_systems_application_get:\n")
+        api_response = api_instance.get_system_application_config()
+        print("The response of SystemsApi->get_system_application_config:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SystemsApi->api_systems_application_get: %s\n" % e)
+        print("Exception when calling SystemsApi->get_system_application_config: %s\n" % e)
 ```
 
 
@@ -52,11 +62,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ApiSystemsApplicationGet200Response**](ApiSystemsApplicationGet200Response.md)
+[**GetSystemApplicationConfig200Response**](GetSystemApplicationConfig200Response.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 

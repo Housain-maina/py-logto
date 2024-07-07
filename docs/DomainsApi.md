@@ -1,83 +1,97 @@
 # py_logto.DomainsApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_domains_get**](DomainsApi.md#api_domains_get) | **GET** /api/domains | Get domains
-[**api_domains_id_delete**](DomainsApi.md#api_domains_id_delete) | **DELETE** /api/domains/{id} | Delete domain
-[**api_domains_id_get**](DomainsApi.md#api_domains_id_get) | **GET** /api/domains/{id} | Get domain
-[**api_domains_post**](DomainsApi.md#api_domains_post) | **POST** /api/domains | Create domain
+[**create_domain**](DomainsApi.md#create_domain) | **POST** /api/domains | Create domain
+[**delete_domain**](DomainsApi.md#delete_domain) | **DELETE** /api/domains/{id} | Delete domain
+[**get_domain**](DomainsApi.md#get_domain) | **GET** /api/domains/{id} | Get domain
+[**list_domains**](DomainsApi.md#list_domains) | **GET** /api/domains | Get domains
 
 
-# **api_domains_get**
-> List[ApiDomainsGet200ResponseInner] api_domains_get()
+# **create_domain**
+> create_domain(create_domain_request)
 
-Get domains
+Create domain
 
-Get all of your custom domains.
+Create a new domain with the given data. The maximum domain number is 1, once created, can not be modified, you'll have to delete and recreate one.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_domains_get200_response_inner import ApiDomainsGet200ResponseInner
+from py_logto.models.create_domain_request import CreateDomainRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.DomainsApi(api_client)
+    create_domain_request = py_logto.CreateDomainRequest() # CreateDomainRequest | 
 
     try:
-        # Get domains
-        api_response = api_instance.api_domains_get()
-        print("The response of DomainsApi->api_domains_get:\n")
-        pprint(api_response)
+        # Create domain
+        api_instance.create_domain(create_domain_request)
     except Exception as e:
-        print("Exception when calling DomainsApi->api_domains_get: %s\n" % e)
+        print("Exception when calling DomainsApi->create_domain: %s\n" % e)
 ```
 
 
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_domain_request** | [**CreateDomainRequest**](CreateDomainRequest.md)|  | 
 
 ### Return type
 
-[**List[ApiDomainsGet200ResponseInner]**](ApiDomainsGet200ResponseInner.md)
+void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A list of domains. |  -  |
+**201** | The domain was created successfully. |  -  |
+**400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
+**422** | Validation error. Please check the request body. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_domains_id_delete**
-> api_domains_id_delete(id)
+# **delete_domain**
+> delete_domain(id)
 
 Delete domain
 
@@ -85,18 +99,28 @@ Delete domain by ID.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -106,9 +130,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Delete domain
-        api_instance.api_domains_id_delete(id)
+        api_instance.delete_domain(id)
     except Exception as e:
-        print("Exception when calling DomainsApi->api_domains_id_delete: %s\n" % e)
+        print("Exception when calling DomainsApi->delete_domain: %s\n" % e)
 ```
 
 
@@ -126,7 +150,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -145,8 +169,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_domains_id_get**
-> ApiDomainsGet200ResponseInner api_domains_id_get(id)
+# **get_domain**
+> ListDomains200ResponseInner get_domain(id)
 
 Get domain
 
@@ -154,19 +178,29 @@ Get domain details by ID, by calling this API, the domain status will be synced 
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_domains_get200_response_inner import ApiDomainsGet200ResponseInner
+from py_logto.models.list_domains200_response_inner import ListDomains200ResponseInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -176,11 +210,11 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Get domain
-        api_response = api_instance.api_domains_id_get(id)
-        print("The response of DomainsApi->api_domains_id_get:\n")
+        api_response = api_instance.get_domain(id)
+        print("The response of DomainsApi->get_domain:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling DomainsApi->api_domains_id_get: %s\n" % e)
+        print("Exception when calling DomainsApi->get_domain: %s\n" % e)
 ```
 
 
@@ -194,11 +228,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiDomainsGet200ResponseInner**](ApiDomainsGet200ResponseInner.md)
+[**ListDomains200ResponseInner**](ListDomains200ResponseInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -217,73 +251,79 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_domains_post**
-> api_domains_post(api_domains_post_request)
+# **list_domains**
+> List[ListDomains200ResponseInner] list_domains()
 
-Create domain
+Get domains
 
-Create a new domain with the given data. The maximum domain number is 1, once created, can not be modified, you'll have to delete and recreate one.
+Get all of your custom domains.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_domains_post_request import ApiDomainsPostRequest
+from py_logto.models.list_domains200_response_inner import ListDomains200ResponseInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.DomainsApi(api_client)
-    api_domains_post_request = py_logto.ApiDomainsPostRequest() # ApiDomainsPostRequest | 
 
     try:
-        # Create domain
-        api_instance.api_domains_post(api_domains_post_request)
+        # Get domains
+        api_response = api_instance.list_domains()
+        print("The response of DomainsApi->list_domains:\n")
+        pprint(api_response)
     except Exception as e:
-        print("Exception when calling DomainsApi->api_domains_post: %s\n" % e)
+        print("Exception when calling DomainsApi->list_domains: %s\n" % e)
 ```
 
 
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **api_domains_post_request** | [**ApiDomainsPostRequest**](ApiDomainsPostRequest.md)|  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**List[ListDomains200ResponseInner]**](ListDomains200ResponseInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The domain was created successfully. |  -  |
-**400** | Bad Request |  -  |
+**200** | A list of domains. |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
-**422** | Validation error. Please check the request body. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

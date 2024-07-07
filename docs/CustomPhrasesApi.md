@@ -1,83 +1,17 @@
 # py_logto.CustomPhrasesApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_custom_phrases_get**](CustomPhrasesApi.md#api_custom_phrases_get) | **GET** /api/custom-phrases | Get all custom phrases
-[**api_custom_phrases_language_tag_delete**](CustomPhrasesApi.md#api_custom_phrases_language_tag_delete) | **DELETE** /api/custom-phrases/{languageTag} | Delete custom phrase
-[**api_custom_phrases_language_tag_get**](CustomPhrasesApi.md#api_custom_phrases_language_tag_get) | **GET** /api/custom-phrases/{languageTag} | Get custom phrases
-[**api_custom_phrases_language_tag_put**](CustomPhrasesApi.md#api_custom_phrases_language_tag_put) | **PUT** /api/custom-phrases/{languageTag} | Upsert custom phrases
+[**delete_custom_phrase**](CustomPhrasesApi.md#delete_custom_phrase) | **DELETE** /api/custom-phrases/{languageTag} | Delete custom phrase
+[**get_custom_phrase**](CustomPhrasesApi.md#get_custom_phrase) | **GET** /api/custom-phrases/{languageTag} | Get custom phrases
+[**list_custom_phrases**](CustomPhrasesApi.md#list_custom_phrases) | **GET** /api/custom-phrases | Get all custom phrases
+[**replace_custom_phrase**](CustomPhrasesApi.md#replace_custom_phrase) | **PUT** /api/custom-phrases/{languageTag} | Upsert custom phrases
 
 
-# **api_custom_phrases_get**
-> List[ApiCustomPhrasesGet200ResponseInner] api_custom_phrases_get()
-
-Get all custom phrases
-
-Get all custom phrases for all languages.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_custom_phrases_get200_response_inner import ApiCustomPhrasesGet200ResponseInner
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.CustomPhrasesApi(api_client)
-
-    try:
-        # Get all custom phrases
-        api_response = api_instance.api_custom_phrases_get()
-        print("The response of CustomPhrasesApi->api_custom_phrases_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling CustomPhrasesApi->api_custom_phrases_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**List[ApiCustomPhrasesGet200ResponseInner]**](ApiCustomPhrasesGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | An array of custom phrases. |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_custom_phrases_language_tag_delete**
-> api_custom_phrases_language_tag_delete(language_tag)
+# **delete_custom_phrase**
+> delete_custom_phrase(language_tag)
 
 Delete custom phrase
 
@@ -85,18 +19,28 @@ Delete custom phrases for the specified language tag.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -106,9 +50,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Delete custom phrase
-        api_instance.api_custom_phrases_language_tag_delete(language_tag)
+        api_instance.delete_custom_phrase(language_tag)
     except Exception as e:
-        print("Exception when calling CustomPhrasesApi->api_custom_phrases_language_tag_delete: %s\n" % e)
+        print("Exception when calling CustomPhrasesApi->delete_custom_phrase: %s\n" % e)
 ```
 
 
@@ -126,7 +70,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -146,8 +90,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_custom_phrases_language_tag_get**
-> ApiCustomPhrasesGet200ResponseInner api_custom_phrases_language_tag_get(language_tag)
+# **get_custom_phrase**
+> ListCustomPhrases200ResponseInner get_custom_phrase(language_tag)
 
 Get custom phrases
 
@@ -155,19 +99,29 @@ Get custom phrases for the specified language tag.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_custom_phrases_get200_response_inner import ApiCustomPhrasesGet200ResponseInner
+from py_logto.models.list_custom_phrases200_response_inner import ListCustomPhrases200ResponseInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -177,11 +131,11 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Get custom phrases
-        api_response = api_instance.api_custom_phrases_language_tag_get(language_tag)
-        print("The response of CustomPhrasesApi->api_custom_phrases_language_tag_get:\n")
+        api_response = api_instance.get_custom_phrase(language_tag)
+        print("The response of CustomPhrasesApi->get_custom_phrase:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling CustomPhrasesApi->api_custom_phrases_language_tag_get: %s\n" % e)
+        print("Exception when calling CustomPhrasesApi->get_custom_phrase: %s\n" % e)
 ```
 
 
@@ -195,11 +149,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiCustomPhrasesGet200ResponseInner**](ApiCustomPhrasesGet200ResponseInner.md)
+[**ListCustomPhrases200ResponseInner**](ListCustomPhrases200ResponseInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -218,8 +172,84 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_custom_phrases_language_tag_put**
-> api_custom_phrases_language_tag_put(language_tag, translation_object)
+# **list_custom_phrases**
+> List[ListCustomPhrases200ResponseInner] list_custom_phrases()
+
+Get all custom phrases
+
+Get all custom phrases for all languages.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_custom_phrases200_response_inner import ListCustomPhrases200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.CustomPhrasesApi(api_client)
+
+    try:
+        # Get all custom phrases
+        api_response = api_instance.list_custom_phrases()
+        print("The response of CustomPhrasesApi->list_custom_phrases:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CustomPhrasesApi->list_custom_phrases: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List[ListCustomPhrases200ResponseInner]**](ListCustomPhrases200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of custom phrases. |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **replace_custom_phrase**
+> replace_custom_phrase(language_tag, translation_object)
 
 Upsert custom phrases
 
@@ -227,6 +257,7 @@ Upsert custom phrases for the specified language tag. Upsert means that if the c
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
@@ -234,12 +265,21 @@ from py_logto.models.translation_object import TranslationObject
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -250,9 +290,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Upsert custom phrases
-        api_instance.api_custom_phrases_language_tag_put(language_tag, translation_object)
+        api_instance.replace_custom_phrase(language_tag, translation_object)
     except Exception as e:
-        print("Exception when calling CustomPhrasesApi->api_custom_phrases_language_tag_put: %s\n" % e)
+        print("Exception when calling CustomPhrasesApi->replace_custom_phrase: %s\n" % e)
 ```
 
 
@@ -271,7 +311,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 

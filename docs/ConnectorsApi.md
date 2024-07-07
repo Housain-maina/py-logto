@@ -1,20 +1,103 @@
 # py_logto.ConnectorsApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_connectors_connector_id_authorization_uri_post**](ConnectorsApi.md#api_connectors_connector_id_authorization_uri_post) | **POST** /api/connectors/{connectorId}/authorization-uri | Get connector&#39;s authorization URI
-[**api_connectors_factory_id_test_post**](ConnectorsApi.md#api_connectors_factory_id_test_post) | **POST** /api/connectors/{factoryId}/test | Test passwordless connector
-[**api_connectors_get**](ConnectorsApi.md#api_connectors_get) | **GET** /api/connectors | Get connectors
-[**api_connectors_id_delete**](ConnectorsApi.md#api_connectors_id_delete) | **DELETE** /api/connectors/{id} | Delete connector
-[**api_connectors_id_get**](ConnectorsApi.md#api_connectors_id_get) | **GET** /api/connectors/{id} | Get connector
-[**api_connectors_id_patch**](ConnectorsApi.md#api_connectors_id_patch) | **PATCH** /api/connectors/{id} | Update connector
-[**api_connectors_post**](ConnectorsApi.md#api_connectors_post) | **POST** /api/connectors | Create connector
+[**create_connector**](ConnectorsApi.md#create_connector) | **POST** /api/connectors | Create connector
+[**create_connector_authorization_uri**](ConnectorsApi.md#create_connector_authorization_uri) | **POST** /api/connectors/{connectorId}/authorization-uri | Get connector&#39;s authorization URI
+[**create_connector_test**](ConnectorsApi.md#create_connector_test) | **POST** /api/connectors/{factoryId}/test | Test passwordless connector
+[**delete_connector**](ConnectorsApi.md#delete_connector) | **DELETE** /api/connectors/{id} | Delete connector
+[**get_connector**](ConnectorsApi.md#get_connector) | **GET** /api/connectors/{id} | Get connector
+[**list_connectors**](ConnectorsApi.md#list_connectors) | **GET** /api/connectors | Get connectors
+[**update_connector**](ConnectorsApi.md#update_connector) | **PATCH** /api/connectors/{id} | Update connector
 
 
-# **api_connectors_connector_id_authorization_uri_post**
-> ApiConnectorsConnectorIdAuthorizationUriPost200Response api_connectors_connector_id_authorization_uri_post(connector_id, api_connectors_connector_id_authorization_uri_post_request)
+# **create_connector**
+> ListConnectors200ResponseInner create_connector(create_connector_request)
+
+Create connector
+
+Create a connector with the given data.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.create_connector_request import CreateConnectorRequest
+from py_logto.models.list_connectors200_response_inner import ListConnectors200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ConnectorsApi(api_client)
+    create_connector_request = py_logto.CreateConnectorRequest() # CreateConnectorRequest | 
+
+    try:
+        # Create connector
+        api_response = api_instance.create_connector(create_connector_request)
+        print("The response of ConnectorsApi->create_connector:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorsApi->create_connector: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_connector_request** | [**CreateConnectorRequest**](CreateConnectorRequest.md)|  | 
+
+### Return type
+
+[**ListConnectors200ResponseInner**](ListConnectors200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created connector. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**422** | Invalid request body. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_connector_authorization_uri**
+> CreateConnectorAuthorizationUri200Response create_connector_authorization_uri(connector_id, create_connector_authorization_uri_request)
 
 Get connector's authorization URI
 
@@ -22,35 +105,45 @@ Get authorization URI for specified connector by providing redirect URI and rand
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_connectors_connector_id_authorization_uri_post200_response import ApiConnectorsConnectorIdAuthorizationUriPost200Response
-from py_logto.models.api_connectors_connector_id_authorization_uri_post_request import ApiConnectorsConnectorIdAuthorizationUriPostRequest
+from py_logto.models.create_connector_authorization_uri200_response import CreateConnectorAuthorizationUri200Response
+from py_logto.models.create_connector_authorization_uri_request import CreateConnectorAuthorizationUriRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.ConnectorsApi(api_client)
     connector_id = 'connector_id_example' # str | The unique identifier of the connector.
-    api_connectors_connector_id_authorization_uri_post_request = py_logto.ApiConnectorsConnectorIdAuthorizationUriPostRequest() # ApiConnectorsConnectorIdAuthorizationUriPostRequest | 
+    create_connector_authorization_uri_request = py_logto.CreateConnectorAuthorizationUriRequest() # CreateConnectorAuthorizationUriRequest | 
 
     try:
         # Get connector's authorization URI
-        api_response = api_instance.api_connectors_connector_id_authorization_uri_post(connector_id, api_connectors_connector_id_authorization_uri_post_request)
-        print("The response of ConnectorsApi->api_connectors_connector_id_authorization_uri_post:\n")
+        api_response = api_instance.create_connector_authorization_uri(connector_id, create_connector_authorization_uri_request)
+        print("The response of ConnectorsApi->create_connector_authorization_uri:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConnectorsApi->api_connectors_connector_id_authorization_uri_post: %s\n" % e)
+        print("Exception when calling ConnectorsApi->create_connector_authorization_uri: %s\n" % e)
 ```
 
 
@@ -61,15 +154,15 @@ with py_logto.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**| The unique identifier of the connector. | 
- **api_connectors_connector_id_authorization_uri_post_request** | [**ApiConnectorsConnectorIdAuthorizationUriPostRequest**](ApiConnectorsConnectorIdAuthorizationUriPostRequest.md)|  | 
+ **create_connector_authorization_uri_request** | [**CreateConnectorAuthorizationUriRequest**](CreateConnectorAuthorizationUriRequest.md)|  | 
 
 ### Return type
 
-[**ApiConnectorsConnectorIdAuthorizationUriPost200Response**](ApiConnectorsConnectorIdAuthorizationUriPost200Response.md)
+[**CreateConnectorAuthorizationUri200Response**](CreateConnectorAuthorizationUri200Response.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -88,8 +181,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_connectors_factory_id_test_post**
-> api_connectors_factory_id_test_post(factory_id, api_connectors_factory_id_test_post_request)
+# **create_connector_test**
+> create_connector_test(factory_id, create_connector_test_request)
 
 Test passwordless connector
 
@@ -97,32 +190,42 @@ Test a passwordless (email or SMS) connector by sending a test message to the gi
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_connectors_factory_id_test_post_request import ApiConnectorsFactoryIdTestPostRequest
+from py_logto.models.create_connector_test_request import CreateConnectorTestRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.ConnectorsApi(api_client)
     factory_id = 'factory_id_example' # str | The unique identifier of the factory.
-    api_connectors_factory_id_test_post_request = py_logto.ApiConnectorsFactoryIdTestPostRequest() # ApiConnectorsFactoryIdTestPostRequest | 
+    create_connector_test_request = py_logto.CreateConnectorTestRequest() # CreateConnectorTestRequest | 
 
     try:
         # Test passwordless connector
-        api_instance.api_connectors_factory_id_test_post(factory_id, api_connectors_factory_id_test_post_request)
+        api_instance.create_connector_test(factory_id, create_connector_test_request)
     except Exception as e:
-        print("Exception when calling ConnectorsApi->api_connectors_factory_id_test_post: %s\n" % e)
+        print("Exception when calling ConnectorsApi->create_connector_test: %s\n" % e)
 ```
 
 
@@ -133,7 +236,7 @@ with py_logto.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **factory_id** | **str**| The unique identifier of the factory. | 
- **api_connectors_factory_id_test_post_request** | [**ApiConnectorsFactoryIdTestPostRequest**](ApiConnectorsFactoryIdTestPostRequest.md)|  | 
+ **create_connector_test_request** | [**CreateConnectorTestRequest**](CreateConnectorTestRequest.md)|  | 
 
 ### Return type
 
@@ -141,7 +244,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -160,79 +263,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_connectors_get**
-> List[ApiConnectorsGet200ResponseInner] api_connectors_get(target=target)
-
-Get connectors
-
-Get all connectors in the current tenant.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_connectors_get200_response_inner import ApiConnectorsGet200ResponseInner
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ConnectorsApi(api_client)
-    target = 'target_example' # str | Filter connectors by target. (optional)
-
-    try:
-        # Get connectors
-        api_response = api_instance.api_connectors_get(target=target)
-        print("The response of ConnectorsApi->api_connectors_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConnectorsApi->api_connectors_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **target** | **str**| Filter connectors by target. | [optional] 
-
-### Return type
-
-[**List[ApiConnectorsGet200ResponseInner]**](ApiConnectorsGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | An array of connectors. |  -  |
-**400** | The target only allows one connector to exist, but there are multiple connectors with this target. |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_connectors_id_delete**
-> api_connectors_id_delete(id)
+# **delete_connector**
+> delete_connector(id)
 
 Delete connector
 
@@ -240,18 +272,28 @@ Delete connector by ID.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -261,9 +303,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Delete connector
-        api_instance.api_connectors_id_delete(id)
+        api_instance.delete_connector(id)
     except Exception as e:
-        print("Exception when calling ConnectorsApi->api_connectors_id_delete: %s\n" % e)
+        print("Exception when calling ConnectorsApi->delete_connector: %s\n" % e)
 ```
 
 
@@ -281,7 +323,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -300,8 +342,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_connectors_id_get**
-> ApiConnectorsGet200ResponseInner api_connectors_id_get(id)
+# **get_connector**
+> ListConnectors200ResponseInner get_connector(id)
 
 Get connector
 
@@ -309,19 +351,29 @@ Get connector data by ID
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_connectors_get200_response_inner import ApiConnectorsGet200ResponseInner
+from py_logto.models.list_connectors200_response_inner import ListConnectors200ResponseInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -331,11 +383,11 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Get connector
-        api_response = api_instance.api_connectors_id_get(id)
-        print("The response of ConnectorsApi->api_connectors_id_get:\n")
+        api_response = api_instance.get_connector(id)
+        print("The response of ConnectorsApi->get_connector:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConnectorsApi->api_connectors_id_get: %s\n" % e)
+        print("Exception when calling ConnectorsApi->get_connector: %s\n" % e)
 ```
 
 
@@ -349,11 +401,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiConnectorsGet200ResponseInner**](ApiConnectorsGet200ResponseInner.md)
+[**ListConnectors200ResponseInner**](ListConnectors200ResponseInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -372,8 +424,89 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_connectors_id_patch**
-> ApiConnectorsGet200ResponseInner api_connectors_id_patch(id, api_connectors_id_patch_request)
+# **list_connectors**
+> List[ListConnectors200ResponseInner] list_connectors(target=target)
+
+Get connectors
+
+Get all connectors in the current tenant.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_connectors200_response_inner import ListConnectors200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ConnectorsApi(api_client)
+    target = 'target_example' # str | Filter connectors by target. (optional)
+
+    try:
+        # Get connectors
+        api_response = api_instance.list_connectors(target=target)
+        print("The response of ConnectorsApi->list_connectors:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorsApi->list_connectors: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **target** | **str**| Filter connectors by target. | [optional] 
+
+### Return type
+
+[**List[ListConnectors200ResponseInner]**](ListConnectors200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of connectors. |  -  |
+**400** | The target only allows one connector to exist, but there are multiple connectors with this target. |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_connector**
+> ListConnectors200ResponseInner update_connector(id, update_connector_request)
 
 Update connector
 
@@ -381,35 +514,45 @@ Update connector by ID with the given data. This methods performs a partial upda
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_connectors_get200_response_inner import ApiConnectorsGet200ResponseInner
-from py_logto.models.api_connectors_id_patch_request import ApiConnectorsIdPatchRequest
+from py_logto.models.list_connectors200_response_inner import ListConnectors200ResponseInner
+from py_logto.models.update_connector_request import UpdateConnectorRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.ConnectorsApi(api_client)
     id = 'id_example' # str | The unique identifier of the connector.
-    api_connectors_id_patch_request = py_logto.ApiConnectorsIdPatchRequest() # ApiConnectorsIdPatchRequest | 
+    update_connector_request = py_logto.UpdateConnectorRequest() # UpdateConnectorRequest | 
 
     try:
         # Update connector
-        api_response = api_instance.api_connectors_id_patch(id, api_connectors_id_patch_request)
-        print("The response of ConnectorsApi->api_connectors_id_patch:\n")
+        api_response = api_instance.update_connector(id, update_connector_request)
+        print("The response of ConnectorsApi->update_connector:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConnectorsApi->api_connectors_id_patch: %s\n" % e)
+        print("Exception when calling ConnectorsApi->update_connector: %s\n" % e)
 ```
 
 
@@ -420,15 +563,15 @@ with py_logto.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier of the connector. | 
- **api_connectors_id_patch_request** | [**ApiConnectorsIdPatchRequest**](ApiConnectorsIdPatchRequest.md)|  | 
+ **update_connector_request** | [**UpdateConnectorRequest**](UpdateConnectorRequest.md)|  | 
 
 ### Return type
 
-[**ApiConnectorsGet200ResponseInner**](ApiConnectorsGet200ResponseInner.md)
+[**ListConnectors200ResponseInner**](ListConnectors200ResponseInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -445,79 +588,6 @@ No authorization required
 **403** | Forbidden |  -  |
 **404** | Connector not found. |  -  |
 **422** | Patch operation triggered a connector conflict. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_connectors_post**
-> ApiConnectorsGet200ResponseInner api_connectors_post(api_connectors_post_request)
-
-Create connector
-
-Create a connector with the given data.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_connectors_get200_response_inner import ApiConnectorsGet200ResponseInner
-from py_logto.models.api_connectors_post_request import ApiConnectorsPostRequest
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ConnectorsApi(api_client)
-    api_connectors_post_request = py_logto.ApiConnectorsPostRequest() # ApiConnectorsPostRequest | 
-
-    try:
-        # Create connector
-        api_response = api_instance.api_connectors_post(api_connectors_post_request)
-        print("The response of ConnectorsApi->api_connectors_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConnectorsApi->api_connectors_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **api_connectors_post_request** | [**ApiConnectorsPostRequest**](ApiConnectorsPostRequest.md)|  | 
-
-### Return type
-
-[**ApiConnectorsGet200ResponseInner**](ApiConnectorsGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The created connector. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**422** | Invalid request body. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

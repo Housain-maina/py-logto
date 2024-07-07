@@ -12,6 +12,7 @@ from py_logto.api.dashboard_api import DashboardApi
 from py_logto.api.domains_api import DomainsApi
 from py_logto.api.hooks_api import HooksApi
 from py_logto.api.interaction_api import InteractionApi
+from py_logto.api.organization_invitations_api import OrganizationInvitationsApi
 from py_logto.api.organization_roles_api import OrganizationRolesApi
 from py_logto.api.organization_scopes_api import OrganizationScopesApi
 from py_logto.api.organizations_api import OrganizationsApi
@@ -27,5 +28,4 @@ from py_logto.api.user_assets_api import UserAssetsApi
 from py_logto.api.users_api import UsersApi
 from py_logto.api.verification_codes_api import VerificationCodesApi
 from py_logto.api.well_known_api import WellKnownApi
-from py_logto.api.default_api import DefaultApi
 

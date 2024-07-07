@@ -1,14 +1,14 @@
 # py_logto.StatusApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_status_get**](StatusApi.md#api_status_get) | **GET** /api/status | Health check
+[**get_status**](StatusApi.md#get_status) | **GET** /api/status | Health check
 
 
-# **api_status_get**
-> api_status_get()
+# **get_status**
+> get_status()
 
 Health check
 
@@ -22,10 +22,10 @@ import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
 
@@ -36,9 +36,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Health check
-        api_instance.api_status_get()
+        api_instance.get_status()
     except Exception as e:
-        print("Exception when calling StatusApi->api_status_get: %s\n" % e)
+        print("Exception when calling StatusApi->get_status: %s\n" % e)
 ```
 
 

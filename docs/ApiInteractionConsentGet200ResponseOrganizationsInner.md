@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
 **name** | **str** |  | 
+**missing_resource_scopes** | [**List[ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInner]**](ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInner.md) |  | [optional] 
 
 ## Example
 

@@ -1,14 +1,14 @@
 # py_logto.SwaggerJsonApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_swagger_json_get**](SwaggerJsonApi.md#api_swagger_json_get) | **GET** /api/swagger.json | Get Swagger JSON
+[**get_swagger_json**](SwaggerJsonApi.md#get_swagger_json) | **GET** /api/swagger.json | Get Swagger JSON
 
 
-# **api_swagger_json_get**
-> api_swagger_json_get()
+# **get_swagger_json**
+> get_swagger_json()
 
 Get Swagger JSON
 
@@ -22,10 +22,10 @@ import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
 
@@ -36,9 +36,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Get Swagger JSON
-        api_instance.api_swagger_json_get()
+        api_instance.get_swagger_json()
     except Exception as e:
-        print("Exception when calling SwaggerJsonApi->api_swagger_json_get: %s\n" % e)
+        print("Exception when calling SwaggerJsonApi->get_swagger_json: %s\n" % e)
 ```
 
 

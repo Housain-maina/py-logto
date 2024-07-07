@@ -1,389 +1,23 @@
 # py_logto.ResourcesApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_resources_get**](ResourcesApi.md#api_resources_get) | **GET** /api/resources | Get API resources
-[**api_resources_id_delete**](ResourcesApi.md#api_resources_id_delete) | **DELETE** /api/resources/{id} | Delete API resource
-[**api_resources_id_get**](ResourcesApi.md#api_resources_id_get) | **GET** /api/resources/{id} | Get API resource
-[**api_resources_id_is_default_patch**](ResourcesApi.md#api_resources_id_is_default_patch) | **PATCH** /api/resources/{id}/is-default | Set API resource as default
-[**api_resources_id_patch**](ResourcesApi.md#api_resources_id_patch) | **PATCH** /api/resources/{id} | Update API resource
-[**api_resources_post**](ResourcesApi.md#api_resources_post) | **POST** /api/resources | Create an API resource
-[**api_resources_resource_id_scopes_get**](ResourcesApi.md#api_resources_resource_id_scopes_get) | **GET** /api/resources/{resourceId}/scopes | Get API resource scopes
-[**api_resources_resource_id_scopes_post**](ResourcesApi.md#api_resources_resource_id_scopes_post) | **POST** /api/resources/{resourceId}/scopes | Create API resource scope
-[**api_resources_resource_id_scopes_scope_id_delete**](ResourcesApi.md#api_resources_resource_id_scopes_scope_id_delete) | **DELETE** /api/resources/{resourceId}/scopes/{scopeId} | Delete API resource scope
-[**api_resources_resource_id_scopes_scope_id_patch**](ResourcesApi.md#api_resources_resource_id_scopes_scope_id_patch) | **PATCH** /api/resources/{resourceId}/scopes/{scopeId} | Update API resource scope
-
-
-# **api_resources_get**
-> List[ApiResourcesGet200ResponseInner] api_resources_get(include_scopes=include_scopes, page=page, page_size=page_size)
-
-Get API resources
-
-Get API resources in the current tenant with pagination.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_resources_get200_response_inner import ApiResourcesGet200ResponseInner
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ResourcesApi(api_client)
-    include_scopes = 'include_scopes_example' # str | If it's provided with a truthy value (`true`, `1`, `yes`), the scopes of each resource will be included in the response. (optional)
-    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
-    page_size = 20 # int | Entries per page. (optional) (default to 20)
-
-    try:
-        # Get API resources
-        api_response = api_instance.api_resources_get(include_scopes=include_scopes, page=page, page_size=page_size)
-        print("The response of ResourcesApi->api_resources_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **include_scopes** | **str**| If it&#39;s provided with a truthy value (&#x60;true&#x60;, &#x60;1&#x60;, &#x60;yes&#x60;), the scopes of each resource will be included in the response. | [optional] 
- **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
- **page_size** | **int**| Entries per page. | [optional] [default to 20]
-
-### Return type
-
-[**List[ApiResourcesGet200ResponseInner]**](ApiResourcesGet200ResponseInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | An array of resources. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_resources_id_delete**
-> api_resources_id_delete(id)
-
-Delete API resource
-
-Delete an API resource by ID.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ResourcesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the resource.
-
-    try:
-        # Delete API resource
-        api_instance.api_resources_id_delete(id)
-    except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_id_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the resource. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | The resource was deleted successfully. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_resources_id_get**
-> ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource api_resources_id_get(id)
-
-Get API resource
-
-Get an API resource details by ID.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_configs_jwt_customizer_token_type_path_get200_response_one_of_context_sample_user_roles_inner_scopes_inner_resource import ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ResourcesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the resource.
-
-    try:
-        # Get API resource
-        api_response = api_instance.api_resources_id_get(id)
-        print("The response of ResourcesApi->api_resources_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the resource. | 
-
-### Return type
-
-[**ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource**](ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The requested resource. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_resources_id_is_default_patch**
-> ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource api_resources_id_is_default_patch(id, api_resources_id_is_default_patch_request)
-
-Set API resource as default
-
-Set an API resource as the default resource for the current tenant.  Each tenant can have only one default API resource. If an API resource is set as default, the previously set default API resource will be set as non-default. See [this section](https://docs.logto.io/docs/references/resources/#default-api) for more information.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_configs_jwt_customizer_token_type_path_get200_response_one_of_context_sample_user_roles_inner_scopes_inner_resource import ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource
-from py_logto.models.api_resources_id_is_default_patch_request import ApiResourcesIdIsDefaultPatchRequest
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ResourcesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the resource.
-    api_resources_id_is_default_patch_request = py_logto.ApiResourcesIdIsDefaultPatchRequest() # ApiResourcesIdIsDefaultPatchRequest | 
-
-    try:
-        # Set API resource as default
-        api_response = api_instance.api_resources_id_is_default_patch(id, api_resources_id_is_default_patch_request)
-        print("The response of ResourcesApi->api_resources_id_is_default_patch:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_id_is_default_patch: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the resource. | 
- **api_resources_id_is_default_patch_request** | [**ApiResourcesIdIsDefaultPatchRequest**](ApiResourcesIdIsDefaultPatchRequest.md)|  | 
-
-### Return type
-
-[**ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource**](ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The updated resource. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_resources_id_patch**
-> ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource api_resources_id_patch(id, api_resources_id_patch_request)
-
-Update API resource
-
-Update an API resource details by ID with the given data. This method performs a partial update.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_configs_jwt_customizer_token_type_path_get200_response_one_of_context_sample_user_roles_inner_scopes_inner_resource import ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource
-from py_logto.models.api_resources_id_patch_request import ApiResourcesIdPatchRequest
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ResourcesApi(api_client)
-    id = 'id_example' # str | The unique identifier of the resource.
-    api_resources_id_patch_request = py_logto.ApiResourcesIdPatchRequest() # ApiResourcesIdPatchRequest | 
-
-    try:
-        # Update API resource
-        api_response = api_instance.api_resources_id_patch(id, api_resources_id_patch_request)
-        print("The response of ResourcesApi->api_resources_id_patch:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_id_patch: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the resource. | 
- **api_resources_id_patch_request** | [**ApiResourcesIdPatchRequest**](ApiResourcesIdPatchRequest.md)|  | 
-
-### Return type
-
-[**ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource**](ApiConfigsJwtCustomizerTokenTypePathGet200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The updated resource. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_resources_post**
-> api_resources_post(api_resources_post_request)
+[**create_resource**](ResourcesApi.md#create_resource) | **POST** /api/resources | Create an API resource
+[**create_resource_scope**](ResourcesApi.md#create_resource_scope) | **POST** /api/resources/{resourceId}/scopes | Create API resource scope
+[**delete_resource**](ResourcesApi.md#delete_resource) | **DELETE** /api/resources/{id} | Delete API resource
+[**delete_resource_scope**](ResourcesApi.md#delete_resource_scope) | **DELETE** /api/resources/{resourceId}/scopes/{scopeId} | Delete API resource scope
+[**get_resource**](ResourcesApi.md#get_resource) | **GET** /api/resources/{id} | Get API resource
+[**list_resource_scopes**](ResourcesApi.md#list_resource_scopes) | **GET** /api/resources/{resourceId}/scopes | Get API resource scopes
+[**list_resources**](ResourcesApi.md#list_resources) | **GET** /api/resources | Get API resources
+[**update_resource**](ResourcesApi.md#update_resource) | **PATCH** /api/resources/{id} | Update API resource
+[**update_resource_is_default**](ResourcesApi.md#update_resource_is_default) | **PATCH** /api/resources/{id}/is-default | Set API resource as default
+[**update_resource_scope**](ResourcesApi.md#update_resource_scope) | **PATCH** /api/resources/{resourceId}/scopes/{scopeId} | Update API resource scope
+
+
+# **create_resource**
+> create_resource(create_resource_request)
 
 Create an API resource
 
@@ -391,31 +25,41 @@ Create an API resource in the current tenant.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_resources_post_request import ApiResourcesPostRequest
+from py_logto.models.create_resource_request import CreateResourceRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.ResourcesApi(api_client)
-    api_resources_post_request = py_logto.ApiResourcesPostRequest() # ApiResourcesPostRequest | 
+    create_resource_request = py_logto.CreateResourceRequest() # CreateResourceRequest | 
 
     try:
         # Create an API resource
-        api_instance.api_resources_post(api_resources_post_request)
+        api_instance.create_resource(create_resource_request)
     except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_post: %s\n" % e)
+        print("Exception when calling ResourcesApi->create_resource: %s\n" % e)
 ```
 
 
@@ -425,7 +69,7 @@ with py_logto.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **api_resources_post_request** | [**ApiResourcesPostRequest**](ApiResourcesPostRequest.md)|  | 
+ **create_resource_request** | [**CreateResourceRequest**](CreateResourceRequest.md)|  | 
 
 ### Return type
 
@@ -433,7 +77,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -452,83 +96,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_resources_resource_id_scopes_get**
-> List[ApiResourcesGet200ResponseInnerScopesInner] api_resources_resource_id_scopes_get(resource_id, page=page, page_size=page_size)
-
-Get API resource scopes
-
-Get scopes (permissions) defined for an API resource.
-
-### Example
-
-
-```python
-import py_logto
-from py_logto.models.api_resources_get200_response_inner_scopes_inner import ApiResourcesGet200ResponseInnerScopesInner
-from py_logto.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://passport.pyla.africa
-# See configuration.py for a list of all supported configuration parameters.
-configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
-)
-
-
-# Enter a context with an instance of the API client
-with py_logto.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = py_logto.ResourcesApi(api_client)
-    resource_id = 'resource_id_example' # str | The unique identifier of the resource.
-    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
-    page_size = 20 # int | Entries per page. (optional) (default to 20)
-
-    try:
-        # Get API resource scopes
-        api_response = api_instance.api_resources_resource_id_scopes_get(resource_id, page=page, page_size=page_size)
-        print("The response of ResourcesApi->api_resources_resource_id_scopes_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_resource_id_scopes_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **resource_id** | **str**| The unique identifier of the resource. | 
- **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
- **page_size** | **int**| Entries per page. | [optional] [default to 20]
-
-### Return type
-
-[**List[ApiResourcesGet200ResponseInnerScopesInner]**](ApiResourcesGet200ResponseInnerScopesInner.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | An array of scopes for the requested resource. |  -  |
-**400** | Bad Request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_resources_resource_id_scopes_post**
-> api_resources_resource_id_scopes_post(resource_id, api_resources_resource_id_scopes_post_request)
+# **create_resource_scope**
+> create_resource_scope(resource_id, create_resource_scope_request)
 
 Create API resource scope
 
@@ -536,32 +105,42 @@ Create a new scope (permission) for an API resource.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_resources_resource_id_scopes_post_request import ApiResourcesResourceIdScopesPostRequest
+from py_logto.models.create_resource_scope_request import CreateResourceScopeRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.ResourcesApi(api_client)
     resource_id = 'resource_id_example' # str | The unique identifier of the resource.
-    api_resources_resource_id_scopes_post_request = py_logto.ApiResourcesResourceIdScopesPostRequest() # ApiResourcesResourceIdScopesPostRequest | 
+    create_resource_scope_request = py_logto.CreateResourceScopeRequest() # CreateResourceScopeRequest | 
 
     try:
         # Create API resource scope
-        api_instance.api_resources_resource_id_scopes_post(resource_id, api_resources_resource_id_scopes_post_request)
+        api_instance.create_resource_scope(resource_id, create_resource_scope_request)
     except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_resource_id_scopes_post: %s\n" % e)
+        print("Exception when calling ResourcesApi->create_resource_scope: %s\n" % e)
 ```
 
 
@@ -572,7 +151,7 @@ with py_logto.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **resource_id** | **str**| The unique identifier of the resource. | 
- **api_resources_resource_id_scopes_post_request** | [**ApiResourcesResourceIdScopesPostRequest**](ApiResourcesResourceIdScopesPostRequest.md)|  | 
+ **create_resource_scope_request** | [**CreateResourceScopeRequest**](CreateResourceScopeRequest.md)|  | 
 
 ### Return type
 
@@ -580,7 +159,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -600,8 +179,87 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_resources_resource_id_scopes_scope_id_delete**
-> api_resources_resource_id_scopes_scope_id_delete(resource_id, scope_id)
+# **delete_resource**
+> delete_resource(id)
+
+Delete API resource
+
+Delete an API resource by ID.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ResourcesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the resource.
+
+    try:
+        # Delete API resource
+        api_instance.delete_resource(id)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->delete_resource: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the resource. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The resource was deleted successfully. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_resource_scope**
+> delete_resource_scope(resource_id, scope_id)
 
 Delete API resource scope
 
@@ -609,18 +267,28 @@ Delete an API resource scope (permission) from the given resource.
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -631,9 +299,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Delete API resource scope
-        api_instance.api_resources_resource_id_scopes_scope_id_delete(resource_id, scope_id)
+        api_instance.delete_resource_scope(resource_id, scope_id)
     except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_resource_id_scopes_scope_id_delete: %s\n" % e)
+        print("Exception when calling ResourcesApi->delete_resource_scope: %s\n" % e)
 ```
 
 
@@ -652,7 +320,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -671,8 +339,430 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_resources_resource_id_scopes_scope_id_patch**
-> ApiResourcesGet200ResponseInnerScopesInner api_resources_resource_id_scopes_scope_id_patch(resource_id, scope_id, api_resources_resource_id_scopes_scope_id_patch_request)
+# **get_resource**
+> GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource get_resource(id)
+
+Get API resource
+
+Get an API resource details by ID.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.get_jwt_customizer200_response_one_of_context_sample_user_roles_inner_scopes_inner_resource import GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ResourcesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the resource.
+
+    try:
+        # Get API resource
+        api_response = api_instance.get_resource(id)
+        print("The response of ResourcesApi->get_resource:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->get_resource: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the resource. | 
+
+### Return type
+
+[**GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource**](GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested resource. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_resource_scopes**
+> List[ListResources200ResponseInnerScopesInner] list_resource_scopes(resource_id, page=page, page_size=page_size)
+
+Get API resource scopes
+
+Get scopes (permissions) defined for an API resource.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_resources200_response_inner_scopes_inner import ListResources200ResponseInnerScopesInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ResourcesApi(api_client)
+    resource_id = 'resource_id_example' # str | The unique identifier of the resource.
+    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
+    page_size = 20 # int | Entries per page. (optional) (default to 20)
+
+    try:
+        # Get API resource scopes
+        api_response = api_instance.list_resource_scopes(resource_id, page=page, page_size=page_size)
+        print("The response of ResourcesApi->list_resource_scopes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->list_resource_scopes: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource_id** | **str**| The unique identifier of the resource. | 
+ **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
+ **page_size** | **int**| Entries per page. | [optional] [default to 20]
+
+### Return type
+
+[**List[ListResources200ResponseInnerScopesInner]**](ListResources200ResponseInnerScopesInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of scopes for the requested resource. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_resources**
+> List[ListResources200ResponseInner] list_resources(include_scopes=include_scopes, page=page, page_size=page_size)
+
+Get API resources
+
+Get API resources in the current tenant with pagination.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.list_resources200_response_inner import ListResources200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ResourcesApi(api_client)
+    include_scopes = 'include_scopes_example' # str | If it's provided with a truthy value (`true`, `1`, `yes`), the scopes of each resource will be included in the response. (optional)
+    page = 1 # int | Page number (starts from 1). (optional) (default to 1)
+    page_size = 20 # int | Entries per page. (optional) (default to 20)
+
+    try:
+        # Get API resources
+        api_response = api_instance.list_resources(include_scopes=include_scopes, page=page, page_size=page_size)
+        print("The response of ResourcesApi->list_resources:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->list_resources: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **include_scopes** | **str**| If it&#39;s provided with a truthy value (&#x60;true&#x60;, &#x60;1&#x60;, &#x60;yes&#x60;), the scopes of each resource will be included in the response. | [optional] 
+ **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
+ **page_size** | **int**| Entries per page. | [optional] [default to 20]
+
+### Return type
+
+[**List[ListResources200ResponseInner]**](ListResources200ResponseInner.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An array of resources. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_resource**
+> GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource update_resource(id, update_resource_request)
+
+Update API resource
+
+Update an API resource details by ID with the given data. This method performs a partial update.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.get_jwt_customizer200_response_one_of_context_sample_user_roles_inner_scopes_inner_resource import GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource
+from py_logto.models.update_resource_request import UpdateResourceRequest
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ResourcesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the resource.
+    update_resource_request = py_logto.UpdateResourceRequest() # UpdateResourceRequest | 
+
+    try:
+        # Update API resource
+        api_response = api_instance.update_resource(id, update_resource_request)
+        print("The response of ResourcesApi->update_resource:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->update_resource: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the resource. | 
+ **update_resource_request** | [**UpdateResourceRequest**](UpdateResourceRequest.md)|  | 
+
+### Return type
+
+[**GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource**](GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated resource. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_resource_is_default**
+> GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource update_resource_is_default(id, update_resource_is_default_request)
+
+Set API resource as default
+
+Set an API resource as the default resource for the current tenant.  Each tenant can have only one default API resource. If an API resource is set as default, the previously set default API resource will be set as non-default. See [this section](https://docs.logto.io/docs/references/resources/#default-api) for more information.
+
+### Example
+
+* Bearer (JWT) Authentication (ManagementApi):
+
+```python
+import py_logto
+from py_logto.models.get_jwt_customizer200_response_one_of_context_sample_user_roles_inner_scopes_inner_resource import GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource
+from py_logto.models.update_resource_is_default_request import UpdateResourceIsDefaultRequest
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3001
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost:3001"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ResourcesApi(api_client)
+    id = 'id_example' # str | The unique identifier of the resource.
+    update_resource_is_default_request = py_logto.UpdateResourceIsDefaultRequest() # UpdateResourceIsDefaultRequest | 
+
+    try:
+        # Set API resource as default
+        api_response = api_instance.update_resource_is_default(id, update_resource_is_default_request)
+        print("The response of ResourcesApi->update_resource_is_default:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ResourcesApi->update_resource_is_default: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the resource. | 
+ **update_resource_is_default_request** | [**UpdateResourceIsDefaultRequest**](UpdateResourceIsDefaultRequest.md)|  | 
+
+### Return type
+
+[**GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource**](GetJwtCustomizer200ResponseOneOfContextSampleUserRolesInnerScopesInnerResource.md)
+
+### Authorization
+
+[ManagementApi](../README.md#ManagementApi)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated resource. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_resource_scope**
+> ListResources200ResponseInnerScopesInner update_resource_scope(resource_id, scope_id, update_resource_scope_request)
 
 Update API resource scope
 
@@ -680,20 +770,30 @@ Update an API resource scope (permission) for the given resource. This method pe
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_resources_get200_response_inner_scopes_inner import ApiResourcesGet200ResponseInnerScopesInner
-from py_logto.models.api_resources_resource_id_scopes_scope_id_patch_request import ApiResourcesResourceIdScopesScopeIdPatchRequest
+from py_logto.models.list_resources200_response_inner_scopes_inner import ListResources200ResponseInnerScopesInner
+from py_logto.models.update_resource_scope_request import UpdateResourceScopeRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -701,15 +801,15 @@ with py_logto.ApiClient(configuration) as api_client:
     api_instance = py_logto.ResourcesApi(api_client)
     resource_id = 'resource_id_example' # str | The unique identifier of the resource.
     scope_id = 'scope_id_example' # str | The unique identifier of the scope.
-    api_resources_resource_id_scopes_scope_id_patch_request = py_logto.ApiResourcesResourceIdScopesScopeIdPatchRequest() # ApiResourcesResourceIdScopesScopeIdPatchRequest | 
+    update_resource_scope_request = py_logto.UpdateResourceScopeRequest() # UpdateResourceScopeRequest | 
 
     try:
         # Update API resource scope
-        api_response = api_instance.api_resources_resource_id_scopes_scope_id_patch(resource_id, scope_id, api_resources_resource_id_scopes_scope_id_patch_request)
-        print("The response of ResourcesApi->api_resources_resource_id_scopes_scope_id_patch:\n")
+        api_response = api_instance.update_resource_scope(resource_id, scope_id, update_resource_scope_request)
+        print("The response of ResourcesApi->update_resource_scope:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ResourcesApi->api_resources_resource_id_scopes_scope_id_patch: %s\n" % e)
+        print("Exception when calling ResourcesApi->update_resource_scope: %s\n" % e)
 ```
 
 
@@ -721,15 +821,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **resource_id** | **str**| The unique identifier of the resource. | 
  **scope_id** | **str**| The unique identifier of the scope. | 
- **api_resources_resource_id_scopes_scope_id_patch_request** | [**ApiResourcesResourceIdScopesScopeIdPatchRequest**](ApiResourcesResourceIdScopesScopeIdPatchRequest.md)|  | 
+ **update_resource_scope_request** | [**UpdateResourceScopeRequest**](UpdateResourceScopeRequest.md)|  | 
 
 ### Return type
 
-[**ApiResourcesGet200ResponseInnerScopesInner**](ApiResourcesGet200ResponseInnerScopesInner.md)
+[**ListResources200ResponseInnerScopesInner**](ListResources200ResponseInnerScopesInner.md)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 

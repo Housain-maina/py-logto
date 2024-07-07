@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **user** | [**ApiInteractionConsentGet200ResponseUser**](ApiInteractionConsentGet200ResponseUser.md) |  | 
 **organizations** | [**List[ApiInteractionConsentGet200ResponseOrganizationsInner]**](ApiInteractionConsentGet200ResponseOrganizationsInner.md) |  | [optional] 
 **missing_oidc_scope** | **List[str]** |  | [optional] 
-**missing_resource_scopes** | [**List[ApiInteractionConsentGet200ResponseMissingResourceScopesInner]**](ApiInteractionConsentGet200ResponseMissingResourceScopesInner.md) |  | [optional] 
+**missing_resource_scopes** | [**List[ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInner]**](ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInner.md) |  | [optional] 
 **redirect_uri** | **str** |  | 
 
 ## Example

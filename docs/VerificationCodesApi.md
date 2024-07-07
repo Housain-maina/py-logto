@@ -1,15 +1,15 @@
 # py_logto.VerificationCodesApi
 
-All URIs are relative to *https://passport.pyla.africa*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_verification_codes_post**](VerificationCodesApi.md#api_verification_codes_post) | **POST** /api/verification-codes | Request and send a verification code
-[**api_verification_codes_verify_post**](VerificationCodesApi.md#api_verification_codes_verify_post) | **POST** /api/verification-codes/verify | Verify a verification code
+[**create_verification_code**](VerificationCodesApi.md#create_verification_code) | **POST** /api/verification-codes | Request and send a verification code
+[**verify_verification_code**](VerificationCodesApi.md#verify_verification_code) | **POST** /api/verification-codes/verify | Verify a verification code
 
 
-# **api_verification_codes_post**
-> api_verification_codes_post(api_interaction_verification_verification_code_post_request)
+# **create_verification_code**
+> create_verification_code(api_interaction_verification_verification_code_post_request)
 
 Request and send a verification code
 
@@ -17,6 +17,7 @@ Request a verification code for the provided identifier (email/phone). if you're
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
@@ -24,12 +25,21 @@ from py_logto.models.api_interaction_verification_verification_code_post_request
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -39,9 +49,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Request and send a verification code
-        api_instance.api_verification_codes_post(api_interaction_verification_verification_code_post_request)
+        api_instance.create_verification_code(api_interaction_verification_verification_code_post_request)
     except Exception as e:
-        print("Exception when calling VerificationCodesApi->api_verification_codes_post: %s\n" % e)
+        print("Exception when calling VerificationCodesApi->create_verification_code: %s\n" % e)
 ```
 
 
@@ -59,7 +69,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
@@ -78,8 +88,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_verification_codes_verify_post**
-> api_verification_codes_verify_post(api_verification_codes_verify_post_request)
+# **verify_verification_code**
+> verify_verification_code(verify_verification_code_request)
 
 Verify a verification code
 
@@ -87,31 +97,41 @@ Verify a verification code for a specified identifier. if you're using email as 
 
 ### Example
 
+* Bearer (JWT) Authentication (ManagementApi):
 
 ```python
 import py_logto
-from py_logto.models.api_verification_codes_verify_post_request import ApiVerificationCodesVerifyPostRequest
+from py_logto.models.verify_verification_code_request import VerifyVerificationCodeRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://passport.pyla.africa
+# Defining the host is optional and defaults to http://localhost:3001
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "https://passport.pyla.africa"
+    host = "http://localhost:3001"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): ManagementApi
+configuration = py_logto.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.VerificationCodesApi(api_client)
-    api_verification_codes_verify_post_request = py_logto.ApiVerificationCodesVerifyPostRequest() # ApiVerificationCodesVerifyPostRequest | 
+    verify_verification_code_request = py_logto.VerifyVerificationCodeRequest() # VerifyVerificationCodeRequest | 
 
     try:
         # Verify a verification code
-        api_instance.api_verification_codes_verify_post(api_verification_codes_verify_post_request)
+        api_instance.verify_verification_code(verify_verification_code_request)
     except Exception as e:
-        print("Exception when calling VerificationCodesApi->api_verification_codes_verify_post: %s\n" % e)
+        print("Exception when calling VerificationCodesApi->verify_verification_code: %s\n" % e)
 ```
 
 
@@ -121,7 +141,7 @@ with py_logto.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **api_verification_codes_verify_post_request** | [**ApiVerificationCodesVerifyPostRequest**](ApiVerificationCodesVerifyPostRequest.md)|  | 
+ **verify_verification_code_request** | [**VerifyVerificationCodeRequest**](VerifyVerificationCodeRequest.md)|  | 
 
 ### Return type
 
@@ -129,7 +149,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[ManagementApi](../README.md#ManagementApi)
 
 ### HTTP request headers
 
