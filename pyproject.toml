@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "py_logto"
-version = "1.0.0"
+version = "1.0.1"
 description = "Logto API Python Client"
 authors = ["Hussaini Usman <hussainmaina27@gmail.com>"]
 license = "NoLicense"
