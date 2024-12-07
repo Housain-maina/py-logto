@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**branding** | [**ApiInteractionConsentGet200ResponseApplicationBranding**](ApiInteractionConsentGet200ResponseApplicationBranding.md) |  | [optional] 
+**color** | [**GetApplicationSignInExperience200ResponseColor**](GetApplicationSignInExperience200ResponseColor.md) |  | [optional] 
+**branding** | [**ListApplicationOrganizations200ResponseInnerBranding**](ListApplicationOrganizations200ResponseInnerBranding.md) |  | [optional] 
 **display_name** | **str** |  | [optional] 
 **terms_of_use_url** | [**ReplaceApplicationSignInExperienceRequestTermsOfUseUrl**](ReplaceApplicationSignInExperienceRequestTermsOfUseUrl.md) |  | 
 **privacy_policy_url** | [**ReplaceApplicationSignInExperienceRequestTermsOfUseUrl**](ReplaceApplicationSignInExperienceRequestTermsOfUseUrl.md) |  | 

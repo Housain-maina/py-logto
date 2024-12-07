@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **connector_id** | **str** |  | 
-**connector_data** | **object** | arbitrary | 
+**phone** | **str** |  | 
 
 ## Example
 

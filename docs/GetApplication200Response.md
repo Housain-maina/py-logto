@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **tenant_id** | **str** |  | 
 **id** | **str** |  | 
 **name** | **str** |  | 
-**secret** | **str** |  | 
+**secret** | **str** | The internal client secret. Note it is only used for internal validation, and the actual secrets should be retrieved from &#x60;/api/applications/{id}/secrets&#x60; endpoints. | 
 **description** | **str** |  | 
 **type** | **str** |  | 
 **oidc_client_metadata** | [**ListApplications200ResponseInnerOidcClientMetadata**](ListApplications200ResponseInnerOidcClientMetadata.md) |  | 
 **custom_client_metadata** | [**ListApplications200ResponseInnerCustomClientMetadata**](ListApplications200ResponseInnerCustomClientMetadata.md) |  | 
 **protected_app_metadata** | [**ListApplications200ResponseInnerProtectedAppMetadata**](ListApplications200ResponseInnerProtectedAppMetadata.md) |  | 
+**custom_data** | **object** | arbitrary | 
 **is_third_party** | **bool** |  | 
 **created_at** | **float** |  | 
 **is_admin** | **bool** |  | 

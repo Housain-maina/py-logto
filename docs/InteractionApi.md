@@ -1,6 +1,6 @@
 # py_logto.InteractionApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -42,10 +42,10 @@ from py_logto.models.api_interaction_bind_mfa_post_request import ApiInteraction
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -109,10 +109,10 @@ from py_logto.models.api_interaction_consent_get200_response import ApiInteracti
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -170,10 +170,10 @@ from py_logto.models.api_interaction_consent_post_request import ApiInteractionC
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -233,10 +233,10 @@ import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -293,10 +293,10 @@ from py_logto.models.api_interaction_event_put_request import ApiInteractionEven
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -359,10 +359,10 @@ from py_logto.models.api_interaction_put_request_identifier import ApiInteractio
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -426,10 +426,10 @@ from py_logto.models.api_interaction_mfa_put_request import ApiInteractionMfaPut
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -491,10 +491,10 @@ from py_logto.models.api_interaction_mfa_skipped_put_request import ApiInteracti
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -555,10 +555,10 @@ import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -616,10 +616,10 @@ from py_logto.models.api_interaction_put_request_profile import ApiInteractionPu
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -681,10 +681,10 @@ from py_logto.models.api_interaction_put_request_profile import ApiInteractionPu
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -746,10 +746,10 @@ from py_logto.models.api_interaction_put_request import ApiInteractionPutRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -800,7 +800,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_interaction_single_sign_on_connector_id_authentication_post**
-> ApiInteractionSubmitPost200Response api_interaction_single_sign_on_connector_id_authentication_post(connector_id, request_body)
+> SubmitInteraction200Response api_interaction_single_sign_on_connector_id_authentication_post(connector_id, request_body)
 
 
 
@@ -809,14 +809,14 @@ No authorization required
 
 ```python
 import py_logto
-from py_logto.models.api_interaction_submit_post200_response import ApiInteractionSubmitPost200Response
+from py_logto.models.submit_interaction200_response import SubmitInteraction200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -847,7 +847,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiInteractionSubmitPost200Response**](ApiInteractionSubmitPost200Response.md)
+[**SubmitInteraction200Response**](SubmitInteraction200Response.md)
 
 ### Authorization
 
@@ -871,7 +871,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_interaction_single_sign_on_connector_id_authorization_url_post**
-> ApiInteractionSubmitPost200Response api_interaction_single_sign_on_connector_id_authorization_url_post(connector_id, api_interaction_single_sign_on_connector_id_authorization_url_post_request)
+> SubmitInteraction200Response api_interaction_single_sign_on_connector_id_authorization_url_post(connector_id, api_interaction_single_sign_on_connector_id_authorization_url_post_request)
 
 
 
@@ -881,14 +881,14 @@ No authorization required
 ```python
 import py_logto
 from py_logto.models.api_interaction_single_sign_on_connector_id_authorization_url_post_request import ApiInteractionSingleSignOnConnectorIdAuthorizationUrlPostRequest
-from py_logto.models.api_interaction_submit_post200_response import ApiInteractionSubmitPost200Response
+from py_logto.models.submit_interaction200_response import SubmitInteraction200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -919,7 +919,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiInteractionSubmitPost200Response**](ApiInteractionSubmitPost200Response.md)
+[**SubmitInteraction200Response**](SubmitInteraction200Response.md)
 
 ### Authorization
 
@@ -942,7 +942,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_interaction_single_sign_on_connector_id_registration_post**
-> ApiInteractionSubmitPost200Response api_interaction_single_sign_on_connector_id_registration_post(connector_id)
+> SubmitInteraction200Response api_interaction_single_sign_on_connector_id_registration_post(connector_id)
 
 
 
@@ -951,14 +951,14 @@ No authorization required
 
 ```python
 import py_logto
-from py_logto.models.api_interaction_submit_post200_response import ApiInteractionSubmitPost200Response
+from py_logto.models.submit_interaction200_response import SubmitInteraction200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -987,7 +987,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiInteractionSubmitPost200Response**](ApiInteractionSubmitPost200Response.md)
+[**SubmitInteraction200Response**](SubmitInteraction200Response.md)
 
 ### Authorization
 
@@ -1023,10 +1023,10 @@ import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -1076,7 +1076,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_interaction_submit_post**
-> ApiInteractionSubmitPost200Response api_interaction_submit_post()
+> SubmitInteraction200Response api_interaction_submit_post()
 
 
 
@@ -1085,14 +1085,14 @@ No authorization required
 
 ```python
 import py_logto
-from py_logto.models.api_interaction_submit_post200_response import ApiInteractionSubmitPost200Response
+from py_logto.models.submit_interaction200_response import SubmitInteraction200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -1117,7 +1117,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ApiInteractionSubmitPost200Response**](ApiInteractionSubmitPost200Response.md)
+[**SubmitInteraction200Response**](SubmitInteraction200Response.md)
 
 ### Authorization
 
@@ -1143,7 +1143,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_interaction_verification_social_authorization_uri_post**
-> ApiInteractionSubmitPost200Response api_interaction_verification_social_authorization_uri_post(api_interaction_verification_social_authorization_uri_post_request)
+> SubmitInteraction200Response api_interaction_verification_social_authorization_uri_post(api_interaction_verification_social_authorization_uri_post_request)
 
 
 
@@ -1152,15 +1152,15 @@ No authorization required
 
 ```python
 import py_logto
-from py_logto.models.api_interaction_submit_post200_response import ApiInteractionSubmitPost200Response
 from py_logto.models.api_interaction_verification_social_authorization_uri_post_request import ApiInteractionVerificationSocialAuthorizationUriPostRequest
+from py_logto.models.submit_interaction200_response import SubmitInteraction200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -1189,7 +1189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiInteractionSubmitPost200Response**](ApiInteractionSubmitPost200Response.md)
+[**SubmitInteraction200Response**](SubmitInteraction200Response.md)
 
 ### Authorization
 
@@ -1224,10 +1224,10 @@ from py_logto.models.api_interaction_verification_totp_post200_response import A
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -1272,7 +1272,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_interaction_verification_verification_code_post**
-> api_interaction_verification_verification_code_post(api_interaction_verification_verification_code_post_request)
+> api_interaction_verification_verification_code_post(create_verification_code_request)
 
 
 
@@ -1281,14 +1281,14 @@ No authorization required
 
 ```python
 import py_logto
-from py_logto.models.api_interaction_verification_verification_code_post_request import ApiInteractionVerificationVerificationCodePostRequest
+from py_logto.models.create_verification_code_request import CreateVerificationCodeRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -1296,10 +1296,10 @@ configuration = py_logto.Configuration(
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.InteractionApi(api_client)
-    api_interaction_verification_verification_code_post_request = py_logto.ApiInteractionVerificationVerificationCodePostRequest() # ApiInteractionVerificationVerificationCodePostRequest | 
+    create_verification_code_request = py_logto.CreateVerificationCodeRequest() # CreateVerificationCodeRequest | 
 
     try:
-        api_instance.api_interaction_verification_verification_code_post(api_interaction_verification_verification_code_post_request)
+        api_instance.api_interaction_verification_verification_code_post(create_verification_code_request)
     except Exception as e:
         print("Exception when calling InteractionApi->api_interaction_verification_verification_code_post: %s\n" % e)
 ```
@@ -1311,7 +1311,7 @@ with py_logto.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **api_interaction_verification_verification_code_post_request** | [**ApiInteractionVerificationVerificationCodePostRequest**](ApiInteractionVerificationVerificationCodePostRequest.md)|  | 
+ **create_verification_code_request** | [**CreateVerificationCodeRequest**](CreateVerificationCodeRequest.md)|  | 
 
 ### Return type
 
@@ -1351,10 +1351,10 @@ from py_logto.models.api_interaction_verification_webauthn_authentication_post20
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 
@@ -1413,10 +1413,10 @@ from py_logto.models.api_interaction_verification_webauthn_registration_post200_
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 

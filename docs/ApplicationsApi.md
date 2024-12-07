@@ -1,24 +1,28 @@
 # py_logto.ApplicationsApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**assign_application_roles**](ApplicationsApi.md#assign_application_roles) | **POST** /api/applications/{applicationId}/roles | Assign API resource roles to application
 [**create_application**](ApplicationsApi.md#create_application) | **POST** /api/applications | Create an application
-[**create_application_protected_app_metadata_custom_domain**](ApplicationsApi.md#create_application_protected_app_metadata_custom_domain) | **POST** /api/applications/{id}/protected-app-metadata/custom-domains | Add a custom domain to the protected application.
+[**create_application_protected_app_metadata_custom_domain**](ApplicationsApi.md#create_application_protected_app_metadata_custom_domain) | **POST** /api/applications/{id}/protected-app-metadata/custom-domains | Add a custom domain to the application.
+[**create_application_secret**](ApplicationsApi.md#create_application_secret) | **POST** /api/applications/{id}/secrets | Add application secret
 [**create_application_user_consent_organization**](ApplicationsApi.md#create_application_user_consent_organization) | **POST** /api/applications/{id}/users/{userId}/consent-organizations | Grant a list of organization access of a user for a application.
 [**create_application_user_consent_scope**](ApplicationsApi.md#create_application_user_consent_scope) | **POST** /api/applications/{applicationId}/user-consent-scopes | Assign user consent scopes to application.
 [**delete_application**](ApplicationsApi.md#delete_application) | **DELETE** /api/applications/{id} | Delete application
-[**delete_application_protected_app_metadata_custom_domain**](ApplicationsApi.md#delete_application_protected_app_metadata_custom_domain) | **DELETE** /api/applications/{id}/protected-app-metadata/custom-domains/{domain} | Delete a custom domain.
+[**delete_application_legacy_secret**](ApplicationsApi.md#delete_application_legacy_secret) | **DELETE** /api/applications/{id}/legacy-secret | Delete application legacy secret
+[**delete_application_protected_app_metadata_custom_domain**](ApplicationsApi.md#delete_application_protected_app_metadata_custom_domain) | **DELETE** /api/applications/{id}/protected-app-metadata/custom-domains/{domain} | Remove custom domain.
 [**delete_application_role**](ApplicationsApi.md#delete_application_role) | **DELETE** /api/applications/{applicationId}/roles/{roleId} | Remove a API resource role from application
+[**delete_application_secret**](ApplicationsApi.md#delete_application_secret) | **DELETE** /api/applications/{id}/secrets/{name} | Delete application secret
 [**delete_application_user_consent_organization**](ApplicationsApi.md#delete_application_user_consent_organization) | **DELETE** /api/applications/{id}/users/{userId}/consent-organizations/{organizationId} | Revoke a user&#39;s access to an organization for a application.
 [**delete_application_user_consent_scope**](ApplicationsApi.md#delete_application_user_consent_scope) | **DELETE** /api/applications/{applicationId}/user-consent-scopes/{scopeType}/{scopeId} | Remove user consent scope from application.
 [**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | Get application
 [**get_application_sign_in_experience**](ApplicationsApi.md#get_application_sign_in_experience) | **GET** /api/applications/{applicationId}/sign-in-experience | Get the application level sign-in experience
 [**list_application_organizations**](ApplicationsApi.md#list_application_organizations) | **GET** /api/applications/{id}/organizations | Get application organizations
-[**list_application_protected_app_metadata_custom_domains**](ApplicationsApi.md#list_application_protected_app_metadata_custom_domains) | **GET** /api/applications/{id}/protected-app-metadata/custom-domains | Get the list of custom domains of the protected application.
+[**list_application_protected_app_metadata_custom_domains**](ApplicationsApi.md#list_application_protected_app_metadata_custom_domains) | **GET** /api/applications/{id}/protected-app-metadata/custom-domains | Get application custom domains.
 [**list_application_roles**](ApplicationsApi.md#list_application_roles) | **GET** /api/applications/{applicationId}/roles | Get application API resource roles
+[**list_application_secrets**](ApplicationsApi.md#list_application_secrets) | **GET** /api/applications/{id}/secrets | Get application secrets
 [**list_application_user_consent_organizations**](ApplicationsApi.md#list_application_user_consent_organizations) | **GET** /api/applications/{id}/users/{userId}/consent-organizations | List all the user consented organizations of a application.
 [**list_application_user_consent_scopes**](ApplicationsApi.md#list_application_user_consent_scopes) | **GET** /api/applications/{applicationId}/user-consent-scopes | List all the user consent scopes of an application.
 [**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | Get applications
@@ -26,6 +30,8 @@ Method | HTTP request | Description
 [**replace_application_sign_in_experience**](ApplicationsApi.md#replace_application_sign_in_experience) | **PUT** /api/applications/{applicationId}/sign-in-experience | Update application level sign-in experience
 [**replace_application_user_consent_organizations**](ApplicationsApi.md#replace_application_user_consent_organizations) | **PUT** /api/applications/{id}/users/{userId}/consent-organizations | Grant a list of organization access of a user for a application.
 [**update_application**](ApplicationsApi.md#update_application) | **PATCH** /api/applications/{id} | Update application
+[**update_application_custom_data**](ApplicationsApi.md#update_application_custom_data) | **PATCH** /api/applications/{applicationId}/custom-data | Update application custom data
+[**update_application_secret**](ApplicationsApi.md#update_application_secret) | **PATCH** /api/applications/{id}/secrets/{name} | Update application secret
 
 
 # **assign_application_roles**
@@ -37,7 +43,7 @@ Assign API resource roles to the specified application. The API resource roles w
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -45,10 +51,10 @@ from py_logto.models.assign_application_roles_request import AssignApplicationRo
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -56,10 +62,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -91,12 +94,12 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
@@ -120,7 +123,7 @@ Create a new application with the given data.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -129,10 +132,10 @@ from py_logto.models.list_applications200_response_inner import ListApplications
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -140,10 +143,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -198,13 +198,13 @@ Name | Type | Description  | Notes
 # **create_application_protected_app_metadata_custom_domain**
 > create_application_protected_app_metadata_custom_domain(id, create_application_protected_app_metadata_custom_domain_request)
 
-Add a custom domain to the protected application.
+Add a custom domain to the application.
 
-Add a custom domain to the protected application. You'll need to setup DNS record later. This feature is not available for open source version.
+Add a custom domain to the application. You'll need to setup DNS record later.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -212,10 +212,10 @@ from py_logto.models.create_application_protected_app_metadata_custom_domain_req
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -223,10 +223,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -236,7 +233,7 @@ with py_logto.ApiClient(configuration) as api_client:
     create_application_protected_app_metadata_custom_domain_request = py_logto.CreateApplicationProtectedAppMetadataCustomDomainRequest() # CreateApplicationProtectedAppMetadataCustomDomainRequest | 
 
     try:
-        # Add a custom domain to the protected application.
+        # Add a custom domain to the application.
         api_instance.create_application_protected_app_metadata_custom_domain(id, create_application_protected_app_metadata_custom_domain_request)
     except Exception as e:
         print("Exception when calling ApplicationsApi->create_application_protected_app_metadata_custom_domain: %s\n" % e)
@@ -258,12 +255,12 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
@@ -280,6 +277,88 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_application_secret**
+> ListApplicationSecrets200ResponseInner create_application_secret(id, create_application_secret_request)
+
+Add application secret
+
+Add a new secret for the application.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.models.create_application_secret_request import CreateApplicationSecretRequest
+from py_logto.models.list_application_secrets200_response_inner import ListApplicationSecrets200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier of the application.
+    create_application_secret_request = py_logto.CreateApplicationSecretRequest() # CreateApplicationSecretRequest | 
+
+    try:
+        # Add application secret
+        api_response = api_instance.create_application_secret(id, create_application_secret_request)
+        print("The response of ApplicationsApi->create_application_secret:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApplicationsApi->create_application_secret: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the application. | 
+ **create_application_secret_request** | [**CreateApplicationSecretRequest**](CreateApplicationSecretRequest.md)|  | 
+
+### Return type
+
+[**ListApplicationSecrets200ResponseInner**](ListApplicationSecrets200ResponseInner.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The secret was added successfully. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**422** | The secret name is already in use. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_application_user_consent_organization**
 > create_application_user_consent_organization(id, user_id, create_application_user_consent_organization_request)
 
@@ -289,7 +368,7 @@ Grant a list of organization access of a user for a application by application i
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -297,10 +376,10 @@ from py_logto.models.create_application_user_consent_organization_request import
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -308,10 +387,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -345,12 +421,12 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
@@ -374,7 +450,7 @@ Assign the user consent scopes to an application by application id
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -382,10 +458,10 @@ from py_logto.models.create_application_user_consent_scope_request import Create
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -393,10 +469,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -428,12 +501,12 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
@@ -457,17 +530,17 @@ Delete application by ID.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -475,10 +548,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -508,7 +578,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -528,26 +598,27 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_application_protected_app_metadata_custom_domain**
-> delete_application_protected_app_metadata_custom_domain(id, domain)
+# **delete_application_legacy_secret**
+> DeleteApplicationLegacySecret200Response delete_application_legacy_secret(id)
 
-Delete a custom domain.
+Delete application legacy secret
 
-Add a custom domain. This feature is not available for open source version.
+Delete the legacy secret for the application and replace it with a new internal secret.  Note: This operation does not \"really\" delete the legacy secret because it is still needed for internal validation. We may remove the display of the legacy secret (the `secret` field in the application response) in the future.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
+from py_logto.models.delete_application_legacy_secret200_response import DeleteApplicationLegacySecret200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -555,10 +626,86 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier of the application.
+
+    try:
+        # Delete application legacy secret
+        api_response = api_instance.delete_application_legacy_secret(id)
+        print("The response of ApplicationsApi->delete_application_legacy_secret:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApplicationsApi->delete_application_legacy_secret: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the application. | 
+
+### Return type
+
+[**DeleteApplicationLegacySecret200Response**](DeleteApplicationLegacySecret200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**204** | The legacy secret was deleted successfully. |  -  |
+**400** | The application does not have a legacy secret. |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_application_protected_app_metadata_custom_domain**
+> delete_application_protected_app_metadata_custom_domain(id, domain)
+
+Remove custom domain.
+
+Remove custom domain from the specified application.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
+    host = "http://localhost"
 )
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -568,7 +715,7 @@ with py_logto.ApiClient(configuration) as api_client:
     domain = 'domain_example' # str | 
 
     try:
-        # Delete a custom domain.
+        # Remove custom domain.
         api_instance.delete_application_protected_app_metadata_custom_domain(id, domain)
     except Exception as e:
         print("Exception when calling ApplicationsApi->delete_application_protected_app_metadata_custom_domain: %s\n" % e)
@@ -590,7 +737,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -601,7 +748,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | The domain has been deleted. |  -  |
+**204** | The domain has been removed. |  -  |
 **400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
@@ -619,17 +766,17 @@ Remove a API resource role from the specified application.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -637,10 +784,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -672,7 +816,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -692,6 +836,84 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_application_secret**
+> delete_application_secret(id, name)
+
+Delete application secret
+
+Delete a secret for the application by name.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier of the application.
+    name = 'name_example' # str | The name of the secret.
+
+    try:
+        # Delete application secret
+        api_instance.delete_application_secret(id, name)
+    except Exception as e:
+        print("Exception when calling ApplicationsApi->delete_application_secret: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the application. | 
+ **name** | **str**| The name of the secret. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The secret was deleted successfully. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_application_user_consent_organization**
 > delete_application_user_consent_organization(id, user_id, organization_id)
 
@@ -701,17 +923,17 @@ Revoke a user's access to an organization for a application by application id, u
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -719,10 +941,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -756,7 +975,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -785,17 +1004,17 @@ Remove the user consent scope from an application by application id, scope type 
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -803,10 +1022,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -840,7 +1056,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -868,7 +1084,7 @@ Get application details by ID.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -876,10 +1092,10 @@ from py_logto.models.get_application200_response import GetApplication200Respons
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -887,10 +1103,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -922,7 +1135,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -950,7 +1163,7 @@ Get application level sign-in experience for a given application.   - Only brand
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -958,10 +1171,10 @@ from py_logto.models.get_application_sign_in_experience200_response import GetAp
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -969,10 +1182,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1004,7 +1214,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1032,7 +1242,7 @@ Get the list of organizations that an application is associated with.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1040,10 +1250,10 @@ from py_logto.models.list_application_organizations200_response_inner import Lis
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1051,10 +1261,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1090,7 +1297,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1112,13 +1319,13 @@ Name | Type | Description  | Notes
 # **list_application_protected_app_metadata_custom_domains**
 > List[ListApplications200ResponseInnerProtectedAppMetadataCustomDomainsInner] list_application_protected_app_metadata_custom_domains(id)
 
-Get the list of custom domains of the protected application.
+Get application custom domains.
 
-Get the list of custom domains of the protected application. This feature is not available for open source version.
+Get custom domains of the specified application, the application type should be protected app.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1126,10 +1333,10 @@ from py_logto.models.list_applications200_response_inner_protected_app_metadata_
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1137,10 +1344,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1149,7 +1353,7 @@ with py_logto.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier of the application.
 
     try:
-        # Get the list of custom domains of the protected application.
+        # Get application custom domains.
         api_response = api_instance.list_application_protected_app_metadata_custom_domains(id)
         print("The response of ApplicationsApi->list_application_protected_app_metadata_custom_domains:\n")
         pprint(api_response)
@@ -1172,7 +1376,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1183,7 +1387,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The domain list of the protected application. |  -  |
+**200** | An array of the application custom domains. |  -  |
 **400** | Faild to sync the domain info from remote provider. |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
@@ -1193,7 +1397,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_application_roles**
-> List[ListApplicationRoles200ResponseInner] list_application_roles(application_id, page=page, page_size=page_size)
+> List[ListApplicationRoles200ResponseInner] list_application_roles(application_id, page=page, page_size=page_size, search_params=search_params)
 
 Get application API resource roles
 
@@ -1201,7 +1405,7 @@ Get API resource roles assigned to the specified application with pagination.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1209,10 +1413,10 @@ from py_logto.models.list_application_roles200_response_inner import ListApplica
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1220,10 +1424,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1232,10 +1433,11 @@ with py_logto.ApiClient(configuration) as api_client:
     application_id = 'application_id_example' # str | The unique identifier of the application.
     page = 1 # int | Page number (starts from 1). (optional) (default to 1)
     page_size = 20 # int | Entries per page. (optional) (default to 20)
+    search_params = {'key': 'search_params_example'} # Dict[str, str] | Search query parameters. (optional)
 
     try:
         # Get application API resource roles
-        api_response = api_instance.list_application_roles(application_id, page=page, page_size=page_size)
+        api_response = api_instance.list_application_roles(application_id, page=page, page_size=page_size, search_params=search_params)
         print("The response of ApplicationsApi->list_application_roles:\n")
         pprint(api_response)
     except Exception as e:
@@ -1252,6 +1454,7 @@ Name | Type | Description  | Notes
  **application_id** | **str**| The unique identifier of the application. | 
  **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
  **page_size** | **int**| Entries per page. | [optional] [default to 20]
+ **search_params** | [**Dict[str, str]**](str.md)| Search query parameters. | [optional] 
 
 ### Return type
 
@@ -1259,7 +1462,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1279,6 +1482,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_application_secrets**
+> List[ListApplicationSecrets200ResponseInner] list_application_secrets(id)
+
+Get application secrets
+
+Get all the secrets for the application.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.models.list_application_secrets200_response_inner import ListApplicationSecrets200ResponseInner
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier of the application.
+
+    try:
+        # Get application secrets
+        api_response = api_instance.list_application_secrets(id)
+        print("The response of ApplicationsApi->list_application_secrets:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApplicationsApi->list_application_secrets: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the application. | 
+
+### Return type
+
+[**List[ListApplicationSecrets200ResponseInner]**](ListApplicationSecrets200ResponseInner.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of secrets. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_application_user_consent_organizations**
 > ListApplicationUserConsentOrganizations200Response list_application_user_consent_organizations(id, user_id, page=page, page_size=page_size)
 
@@ -1288,7 +1570,7 @@ List all the user consented organizations for a application by application id an
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1296,10 +1578,10 @@ from py_logto.models.list_application_user_consent_organizations200_response imp
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1307,10 +1589,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1348,7 +1627,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1377,7 +1656,7 @@ List all the user consent scopes of an application by application id
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1385,10 +1664,10 @@ from py_logto.models.list_application_user_consent_scopes200_response import Lis
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1396,10 +1675,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1431,7 +1707,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1451,7 +1727,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_applications**
-> List[ListApplications200ResponseInner] list_applications(types=types, exclude_role_id=exclude_role_id, exclude_organization_id=exclude_organization_id, is_third_party=is_third_party, page=page, page_size=page_size)
+> List[ListApplications200ResponseInner] list_applications(types=types, exclude_role_id=exclude_role_id, exclude_organization_id=exclude_organization_id, is_third_party=is_third_party, page=page, page_size=page_size, search_params=search_params)
 
 Get applications
 
@@ -1459,7 +1735,7 @@ Get applications that match the given query with pagination.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1467,10 +1743,10 @@ from py_logto.models.list_applications200_response_inner import ListApplications
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1478,10 +1754,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1493,10 +1766,11 @@ with py_logto.ApiClient(configuration) as api_client:
     is_third_party = py_logto.ListApplicationsIsThirdPartyParameter() # ListApplicationsIsThirdPartyParameter |  (optional)
     page = 1 # int | Page number (starts from 1). (optional) (default to 1)
     page_size = 20 # int | Entries per page. (optional) (default to 20)
+    search_params = {'key': 'search_params_example'} # Dict[str, str] | Search query parameters. (optional)
 
     try:
         # Get applications
-        api_response = api_instance.list_applications(types=types, exclude_role_id=exclude_role_id, exclude_organization_id=exclude_organization_id, is_third_party=is_third_party, page=page, page_size=page_size)
+        api_response = api_instance.list_applications(types=types, exclude_role_id=exclude_role_id, exclude_organization_id=exclude_organization_id, is_third_party=is_third_party, page=page, page_size=page_size, search_params=search_params)
         print("The response of ApplicationsApi->list_applications:\n")
         pprint(api_response)
     except Exception as e:
@@ -1516,6 +1790,7 @@ Name | Type | Description  | Notes
  **is_third_party** | [**ListApplicationsIsThirdPartyParameter**](.md)|  | [optional] 
  **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
  **page_size** | **int**| Entries per page. | [optional] [default to 20]
+ **search_params** | [**Dict[str, str]**](str.md)| Search query parameters. | [optional] 
 
 ### Return type
 
@@ -1523,7 +1798,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1550,7 +1825,7 @@ Update API resource roles assigned to the specified application. This will repla
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1558,10 +1833,10 @@ from py_logto.models.replace_application_roles_request import ReplaceApplication
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1569,10 +1844,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1604,7 +1876,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1633,7 +1905,7 @@ Update application level sign-in experience for the specified application. Creat
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1642,10 +1914,10 @@ from py_logto.models.replace_application_sign_in_experience_request import Repla
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1653,10 +1925,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1690,7 +1959,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1720,7 +1989,7 @@ Grant a list of organization access of a user for a application by application i
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1728,10 +1997,10 @@ from py_logto.models.replace_application_user_consent_organizations_request impo
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1739,10 +2008,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1776,7 +2042,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1805,7 +2071,7 @@ Update application details by ID with the given data.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -1814,10 +2080,10 @@ from py_logto.models.update_application_request import UpdateApplicationRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1825,10 +2091,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -1862,7 +2125,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -1880,6 +2143,170 @@ Name | Type | Description  | Notes
 **404** | The application with the specified ID was not found. |  -  |
 **422** | Validation error. Please check the request body. |  -  |
 **500** | Internal server error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_application_custom_data**
+> object update_application_custom_data(application_id, body)
+
+Update application custom data
+
+Update the custom data of an application.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ApplicationsApi(api_client)
+    application_id = 'application_id_example' # str | The unique identifier of the application.
+    body = None # object | 
+
+    try:
+        # Update application custom data
+        api_response = api_instance.update_application_custom_data(application_id, body)
+        print("The response of ApplicationsApi->update_application_custom_data:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApplicationsApi->update_application_custom_data: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **application_id** | **str**| The unique identifier of the application. | 
+ **body** | **object**|  | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated custom data in JSON. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_application_secret**
+> ListApplicationSecrets200ResponseInner update_application_secret(id, name, update_application_secret_request)
+
+Update application secret
+
+Update a secret for the application by name.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.models.list_application_secrets200_response_inner import ListApplicationSecrets200ResponseInner
+from py_logto.models.update_application_secret_request import UpdateApplicationSecretRequest
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier of the application.
+    name = 'name_example' # str | The name of the secret.
+    update_application_secret_request = py_logto.UpdateApplicationSecretRequest() # UpdateApplicationSecretRequest | 
+
+    try:
+        # Update application secret
+        api_response = api_instance.update_application_secret(id, name, update_application_secret_request)
+        print("The response of ApplicationsApi->update_application_secret:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApplicationsApi->update_application_secret: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the application. | 
+ **name** | **str**| The name of the secret. | 
+ **update_application_secret_request** | [**UpdateApplicationSecretRequest**](UpdateApplicationSecretRequest.md)|  | 
+
+### Return type
+
+[**ListApplicationSecrets200ResponseInner**](ListApplicationSecrets200ResponseInner.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**204** | The secret was updated successfully. |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

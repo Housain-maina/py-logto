@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **type** | **str** |  | 
 **oidc_client_metadata** | [**ListApplications200ResponseInnerOidcClientMetadata**](ListApplications200ResponseInnerOidcClientMetadata.md) |  | [optional] 
 **custom_client_metadata** | [**ListApplications200ResponseInnerCustomClientMetadata**](ListApplications200ResponseInnerCustomClientMetadata.md) |  | [optional] 
+**custom_data** | **object** | arbitrary | [optional] 
 **is_third_party** | **bool** |  | [optional] 
 **protected_app_metadata** | [**CreateApplicationRequestProtectedAppMetadata**](CreateApplicationRequestProtectedAppMetadata.md) |  | [optional] 
 

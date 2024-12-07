@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **user** | [**GetJwtCustomizer200ResponseOneOfContextSampleUser**](GetJwtCustomizer200ResponseOneOfContextSampleUser.md) |  | 
+**grant** | [**GetJwtCustomizer200ResponseOneOfContextSampleGrant**](GetJwtCustomizer200ResponseOneOfContextSampleGrant.md) |  | [optional] 
 
 ## Example
 

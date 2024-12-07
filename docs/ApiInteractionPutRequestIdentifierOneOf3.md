@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **str** |  | 
-**verification_code** | **str** |  | 
+**connector_id** | **str** |  | 
+**connector_data** | **object** | arbitrary | 
 
 ## Example
 

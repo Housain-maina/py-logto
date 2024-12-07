@@ -1,6 +1,6 @@
 # py_logto.ResourcesApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **create_resource**
-> create_resource(create_resource_request)
+> ListResources200ResponseInner create_resource(create_resource_request)
 
 Create an API resource
 
@@ -25,18 +25,19 @@ Create an API resource in the current tenant.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.models.create_resource_request import CreateResourceRequest
+from py_logto.models.list_resources200_response_inner import ListResources200ResponseInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -44,10 +45,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -57,7 +55,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Create an API resource
-        api_instance.create_resource(create_resource_request)
+        api_response = api_instance.create_resource(create_resource_request)
+        print("The response of ResourcesApi->create_resource:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ResourcesApi->create_resource: %s\n" % e)
 ```
@@ -73,16 +73,16 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ListResources200ResponseInner**](ListResources200ResponseInner.md)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
@@ -97,7 +97,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_resource_scope**
-> create_resource_scope(resource_id, create_resource_scope_request)
+> ListResources200ResponseInnerScopesInner create_resource_scope(resource_id, create_resource_scope_request)
 
 Create API resource scope
 
@@ -105,18 +105,19 @@ Create a new scope (permission) for an API resource.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.models.create_resource_scope_request import CreateResourceScopeRequest
+from py_logto.models.list_resources200_response_inner_scopes_inner import ListResources200ResponseInnerScopesInner
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -124,10 +125,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -138,7 +136,9 @@ with py_logto.ApiClient(configuration) as api_client:
 
     try:
         # Create API resource scope
-        api_instance.create_resource_scope(resource_id, create_resource_scope_request)
+        api_response = api_instance.create_resource_scope(resource_id, create_resource_scope_request)
+        print("The response of ResourcesApi->create_resource_scope:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ResourcesApi->create_resource_scope: %s\n" % e)
 ```
@@ -155,16 +155,16 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ListResources200ResponseInnerScopesInner**](ListResources200ResponseInnerScopesInner.md)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
@@ -188,17 +188,17 @@ Delete an API resource by ID.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -206,10 +206,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -239,7 +236,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -267,17 +264,17 @@ Delete an API resource scope (permission) from the given resource.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -285,10 +282,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -320,7 +314,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -348,7 +342,7 @@ Get an API resource details by ID.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -356,10 +350,10 @@ from py_logto.models.get_jwt_customizer200_response_one_of_context_sample_user_r
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -367,10 +361,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -402,7 +393,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -422,7 +413,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_resource_scopes**
-> List[ListResources200ResponseInnerScopesInner] list_resource_scopes(resource_id, page=page, page_size=page_size)
+> List[ListResources200ResponseInnerScopesInner] list_resource_scopes(resource_id, page=page, page_size=page_size, search_params=search_params)
 
 Get API resource scopes
 
@@ -430,7 +421,7 @@ Get scopes (permissions) defined for an API resource.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -438,10 +429,10 @@ from py_logto.models.list_resources200_response_inner_scopes_inner import ListRe
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -449,10 +440,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -461,10 +449,11 @@ with py_logto.ApiClient(configuration) as api_client:
     resource_id = 'resource_id_example' # str | The unique identifier of the resource.
     page = 1 # int | Page number (starts from 1). (optional) (default to 1)
     page_size = 20 # int | Entries per page. (optional) (default to 20)
+    search_params = {'key': 'search_params_example'} # Dict[str, str] | Search query parameters. (optional)
 
     try:
         # Get API resource scopes
-        api_response = api_instance.list_resource_scopes(resource_id, page=page, page_size=page_size)
+        api_response = api_instance.list_resource_scopes(resource_id, page=page, page_size=page_size, search_params=search_params)
         print("The response of ResourcesApi->list_resource_scopes:\n")
         pprint(api_response)
     except Exception as e:
@@ -481,6 +470,7 @@ Name | Type | Description  | Notes
  **resource_id** | **str**| The unique identifier of the resource. | 
  **page** | **int**| Page number (starts from 1). | [optional] [default to 1]
  **page_size** | **int**| Entries per page. | [optional] [default to 20]
+ **search_params** | [**Dict[str, str]**](str.md)| Search query parameters. | [optional] 
 
 ### Return type
 
@@ -488,7 +478,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -515,7 +505,7 @@ Get API resources in the current tenant with pagination.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -523,10 +513,10 @@ from py_logto.models.list_resources200_response_inner import ListResources200Res
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -534,10 +524,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -573,7 +560,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -600,7 +587,7 @@ Update an API resource details by ID with the given data. This method performs a
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -609,10 +596,10 @@ from py_logto.models.update_resource_request import UpdateResourceRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -620,10 +607,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -657,7 +641,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -685,7 +669,7 @@ Set an API resource as the default resource for the current tenant.  Each tenant
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -694,10 +678,10 @@ from py_logto.models.update_resource_is_default_request import UpdateResourceIsD
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -705,10 +689,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -742,7 +723,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -770,7 +751,7 @@ Update an API resource scope (permission) for the given resource. This method pe
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -779,10 +760,10 @@ from py_logto.models.update_resource_scope_request import UpdateResourceScopeReq
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -790,10 +771,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -829,7 +807,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

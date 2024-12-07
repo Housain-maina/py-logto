@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **id** | **str** |  | 
 **raw_id** | **str** |  | 
 **authenticator_attachment** | **str** |  | [optional] 
-**client_extension_results** | [**ApiInteractionBindMfaPostRequestOneOf1ClientExtensionResults**](ApiInteractionBindMfaPostRequestOneOf1ClientExtensionResults.md) |  | 
-**response** | [**ApiInteractionMfaPutRequestOneOfResponse**](ApiInteractionMfaPutRequestOneOfResponse.md) |  | 
+**client_extension_results** | [**VerifyWebAuthnRegistrationVerificationRequestPayloadClientExtensionResults**](VerifyWebAuthnRegistrationVerificationRequestPayloadClientExtensionResults.md) |  | 
+**response** | [**VerifyWebAuthnAuthenticationVerificationRequestPayloadResponse**](VerifyWebAuthnAuthenticationVerificationRequestPayloadResponse.md) |  | 
 
 ## Example
 

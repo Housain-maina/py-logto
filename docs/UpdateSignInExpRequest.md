@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tenant_id** | **str** |  | [optional] 
 **color** | [**UpdateSignInExpRequestColor**](UpdateSignInExpRequestColor.md) |  | [optional] 
-**branding** | [**ApiInteractionConsentGet200ResponseApplicationBranding**](ApiInteractionConsentGet200ResponseApplicationBranding.md) |  | [optional] 
+**branding** | [**ListApplicationOrganizations200ResponseInnerBranding**](ListApplicationOrganizations200ResponseInnerBranding.md) |  | [optional] 
 **language_info** | [**UpdateSignInExpRequestLanguageInfo**](UpdateSignInExpRequestLanguageInfo.md) |  | [optional] 
 **agree_to_terms_policy** | **str** |  | [optional] 
 **sign_in** | [**UpdateSignInExpRequestSignIn**](UpdateSignInExpRequestSignIn.md) |  | [optional] 
@@ -17,12 +17,15 @@ Name | Type | Description | Notes
 **sign_in_mode** | **str** |  | [optional] 
 **custom_css** | **str** |  | [optional] 
 **custom_content** | **Dict[str, str]** | Custom content to display on experience flow pages. the page pathname will be the config key, the content will be the config value. | [optional] 
-**custom_ui_asset_id** | **str** |  | [optional] 
+**custom_ui_assets** | [**GetSignInExp200ResponseCustomUiAssets**](GetSignInExp200ResponseCustomUiAssets.md) |  | [optional] 
 **password_policy** | [**GetSignInExp200ResponsePasswordPolicy**](GetSignInExp200ResponsePasswordPolicy.md) |  | [optional] 
 **mfa** | [**GetSignInExp200ResponseMfa**](GetSignInExp200ResponseMfa.md) |  | [optional] 
 **single_sign_on_enabled** | **bool** |  | [optional] 
 **terms_of_use_url** | [**UpdateSignInExpRequestTermsOfUseUrl**](UpdateSignInExpRequestTermsOfUseUrl.md) |  | [optional] 
 **privacy_policy_url** | [**UpdateSignInExpRequestTermsOfUseUrl**](UpdateSignInExpRequestTermsOfUseUrl.md) |  | [optional] 
+**support_email** | [**UpdateSignInExpRequestSupportEmail**](UpdateSignInExpRequestSupportEmail.md) |  | [optional] 
+**support_website_url** | [**UpdateSignInExpRequestSupportWebsiteUrl**](UpdateSignInExpRequestSupportWebsiteUrl.md) |  | [optional] 
+**unknown_session_redirect_url** | [**UpdateSignInExpRequestUnknownSessionRedirectUrl**](UpdateSignInExpRequestUnknownSessionRedirectUrl.md) |  | [optional] 
 
 ## Example
 

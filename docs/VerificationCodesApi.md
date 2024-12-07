@@ -1,6 +1,6 @@
 # py_logto.VerificationCodesApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **create_verification_code**
-> create_verification_code(api_interaction_verification_verification_code_post_request)
+> create_verification_code(create_verification_code_request)
 
 Request and send a verification code
 
@@ -17,18 +17,18 @@ Request a verification code for the provided identifier (email/phone). if you're
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
-from py_logto.models.api_interaction_verification_verification_code_post_request import ApiInteractionVerificationVerificationCodePostRequest
+from py_logto.models.create_verification_code_request import CreateVerificationCodeRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -36,20 +36,17 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = py_logto.VerificationCodesApi(api_client)
-    api_interaction_verification_verification_code_post_request = py_logto.ApiInteractionVerificationVerificationCodePostRequest() # ApiInteractionVerificationVerificationCodePostRequest | 
+    create_verification_code_request = py_logto.CreateVerificationCodeRequest() # CreateVerificationCodeRequest | 
 
     try:
         # Request and send a verification code
-        api_instance.create_verification_code(api_interaction_verification_verification_code_post_request)
+        api_instance.create_verification_code(create_verification_code_request)
     except Exception as e:
         print("Exception when calling VerificationCodesApi->create_verification_code: %s\n" % e)
 ```
@@ -61,7 +58,7 @@ with py_logto.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **api_interaction_verification_verification_code_post_request** | [**ApiInteractionVerificationVerificationCodePostRequest**](ApiInteractionVerificationVerificationCodePostRequest.md)|  | 
+ **create_verification_code_request** | [**CreateVerificationCodeRequest**](CreateVerificationCodeRequest.md)|  | 
 
 ### Return type
 
@@ -69,7 +66,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -97,7 +94,7 @@ Verify a verification code for a specified identifier. if you're using email as 
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -105,10 +102,10 @@ from py_logto.models.verify_verification_code_request import VerifyVerificationC
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -116,10 +113,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -149,7 +143,7 @@ void (empty response body)
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

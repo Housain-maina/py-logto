@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **resource** | [**ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInnerResource**](ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInnerResource.md) |  | 
-**scopes** | [**List[ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInnerScopesInner]**](ApiInteractionConsentGet200ResponseOrganizationsInnerMissingResourceScopesInnerScopesInner.md) |  | 
+**scopes** | [**List[ListApplicationUserConsentScopes200ResponseResourceScopesInnerScopesInner]**](ListApplicationUserConsentScopes200ResponseResourceScopesInnerScopesInner.md) |  | 
 
 ## Example
 

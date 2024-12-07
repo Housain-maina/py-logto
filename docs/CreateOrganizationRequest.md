@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **description** | **str** | The description of the organization. | [optional] 
 **custom_data** | **object** | arbitrary | [optional] 
 **is_mfa_required** | **bool** |  | [optional] 
+**branding** | [**ListApplicationOrganizations200ResponseInnerBranding**](ListApplicationOrganizations200ResponseInnerBranding.md) |  | [optional] 
 **created_at** | **float** |  | [optional] 
 
 ## Example

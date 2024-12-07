@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tenant_id** | **str** |  | 
 **application_id** | **str** |  | 
-**branding** | [**ApiInteractionConsentGet200ResponseApplicationBranding**](ApiInteractionConsentGet200ResponseApplicationBranding.md) |  | 
+**color** | [**GetApplicationSignInExperience200ResponseColor**](GetApplicationSignInExperience200ResponseColor.md) |  | 
+**branding** | [**ListApplicationOrganizations200ResponseInnerBranding**](ListApplicationOrganizations200ResponseInnerBranding.md) |  | 
 **terms_of_use_url** | **str** |  | 
 **privacy_policy_url** | **str** |  | 
 **display_name** | **str** |  | 

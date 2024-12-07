@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **description** | **str** |  | 
 **custom_data** | **object** | arbitrary | 
 **is_mfa_required** | **bool** |  | 
+**branding** | [**ListApplicationOrganizations200ResponseInnerBranding**](ListApplicationOrganizations200ResponseInnerBranding.md) |  | 
 **created_at** | **float** |  | 
 **users_count** | **float** |  | [optional] 
 **featured_users** | [**List[ListRoles200ResponseInnerFeaturedUsersInner]**](ListRoles200ResponseInnerFeaturedUsersInner.md) |  | [optional] 

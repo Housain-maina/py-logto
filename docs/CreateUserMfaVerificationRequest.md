@@ -5,7 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**CreateUserMfaVerificationRequestType**](CreateUserMfaVerificationRequestType.md) |  | 
+**type** | **str** | The type of MFA verification to create. | 
+**secret** | **str** | The secret for the MFA verification, if not provided, a new secret will be generated. | [optional] 
+**codes** | **List[str]** | The backup codes for the MFA verification, if not provided, a new group of backup codes will be generated. | [optional] 
 
 ## Example
 

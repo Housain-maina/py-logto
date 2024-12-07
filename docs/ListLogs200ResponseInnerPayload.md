@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **user_id** | **str** |  | [optional] 
 **application_id** | **str** |  | [optional] 
 **session_id** | **str** |  | [optional] 
+**params** | **Dict[str, object]** |  | [optional] 
 
 ## Example
 

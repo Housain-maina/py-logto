@@ -7,8 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
-**oidc_client_metadata** | [**UpdateApplicationRequestOidcClientMetadata**](UpdateApplicationRequestOidcClientMetadata.md) |  | [optional] 
+**oidc_client_metadata** | [**ListApplications200ResponseInnerOidcClientMetadata**](ListApplications200ResponseInnerOidcClientMetadata.md) |  | [optional] 
 **custom_client_metadata** | [**ListApplications200ResponseInnerCustomClientMetadata**](ListApplications200ResponseInnerCustomClientMetadata.md) |  | [optional] 
+**custom_data** | **object** | arbitrary | [optional] 
 **protected_app_metadata** | [**UpdateApplicationRequestProtectedAppMetadata**](UpdateApplicationRequestProtectedAppMetadata.md) |  | [optional] 
 **is_admin** | **bool** | Whether the application has admin access. User can enable the admin access for Machine-to-Machine apps. | [optional] 
 

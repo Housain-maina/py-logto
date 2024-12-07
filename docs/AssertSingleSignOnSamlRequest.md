@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**relay_state** | **str** | SAML standard parameter that will be transmitted between the identity provider and the service provider. It will be used as the session ID (jti) of the user&#39;s Logto authentication session. This API will use this session ID to retrieve the SSO connector authentication session from the database. | 
+**relay_state** | **str** | SAML standard parameter that will be transmitted between the identity provider and the service provider. It will be used as the session ID (jti) of the user&#39;s Logto authentication session. This API will use this session ID to retrieve the SSO connector authentication session from the database. | [optional] 
 **saml_response** | **str** | The SAML assertion response from the identity provider (IdP). | 
 
 ## Example

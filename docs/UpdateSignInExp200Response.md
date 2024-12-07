@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **tenant_id** | **str** |  | 
 **id** | **str** |  | 
 **color** | [**UpdateSignInExp200ResponseColor**](UpdateSignInExp200ResponseColor.md) |  | 
-**branding** | [**ApiInteractionConsentGet200ResponseApplicationBranding**](ApiInteractionConsentGet200ResponseApplicationBranding.md) |  | 
+**branding** | [**ListApplicationOrganizations200ResponseInnerBranding**](ListApplicationOrganizations200ResponseInnerBranding.md) |  | 
 **language_info** | [**UpdateSignInExp200ResponseLanguageInfo**](UpdateSignInExp200ResponseLanguageInfo.md) |  | 
 **terms_of_use_url** | **str** |  | 
 **privacy_policy_url** | **str** |  | 
@@ -20,10 +20,13 @@ Name | Type | Description | Notes
 **sign_in_mode** | **str** |  | 
 **custom_css** | **str** |  | 
 **custom_content** | **Dict[str, str]** |  | 
-**custom_ui_asset_id** | **str** |  | 
+**custom_ui_assets** | [**GetSignInExp200ResponseCustomUiAssets**](GetSignInExp200ResponseCustomUiAssets.md) |  | 
 **password_policy** | [**UpdateSignInExp200ResponsePasswordPolicy**](UpdateSignInExp200ResponsePasswordPolicy.md) |  | 
 **mfa** | [**UpdateSignInExp200ResponseMfa**](UpdateSignInExp200ResponseMfa.md) |  | 
 **single_sign_on_enabled** | **bool** |  | 
+**support_email** | **str** |  | 
+**support_website_url** | **str** |  | 
+**unknown_session_redirect_url** | **str** |  | 
 
 ## Example
 

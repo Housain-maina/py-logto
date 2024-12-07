@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **type** | **str** |  | 
 **id** | **str** |  | 
 **raw_id** | **str** |  | 
-**response** | [**ApiInteractionBindMfaPostRequestOneOf1Response**](ApiInteractionBindMfaPostRequestOneOf1Response.md) |  | 
+**response** | [**VerifyWebAuthnRegistrationVerificationRequestPayloadResponse**](VerifyWebAuthnRegistrationVerificationRequestPayloadResponse.md) |  | 
 **authenticator_attachment** | **str** |  | [optional] 
-**client_extension_results** | [**ApiInteractionBindMfaPostRequestOneOf1ClientExtensionResults**](ApiInteractionBindMfaPostRequestOneOf1ClientExtensionResults.md) |  | 
+**client_extension_results** | [**VerifyWebAuthnRegistrationVerificationRequestPayloadClientExtensionResults**](VerifyWebAuthnRegistrationVerificationRequestPayloadClientExtensionResults.md) |  | 
 
 ## Example
 

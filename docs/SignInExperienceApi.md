@@ -1,12 +1,93 @@
 # py_logto.SignInExperienceApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**check_password_with_default_sign_in_experience**](SignInExperienceApi.md#check_password_with_default_sign_in_experience) | **POST** /api/sign-in-exp/default/check-password | Check if a password meets the password policy
 [**get_sign_in_exp**](SignInExperienceApi.md#get_sign_in_exp) | **GET** /api/sign-in-exp | Get default sign-in experience settings
 [**update_sign_in_exp**](SignInExperienceApi.md#update_sign_in_exp) | **PATCH** /api/sign-in-exp | Update default sign-in experience settings
+[**upload_custom_ui_assets**](SignInExperienceApi.md#upload_custom_ui_assets) | **POST** /api/sign-in-exp/default/custom-ui-assets | Upload custom UI assets
 
+
+# **check_password_with_default_sign_in_experience**
+> CheckPasswordWithDefaultSignInExperience200Response check_password_with_default_sign_in_experience(check_password_with_default_sign_in_experience_request)
+
+Check if a password meets the password policy
+
+Check if a password meets the password policy in the sign-in experience settings.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.models.check_password_with_default_sign_in_experience200_response import CheckPasswordWithDefaultSignInExperience200Response
+from py_logto.models.check_password_with_default_sign_in_experience_request import CheckPasswordWithDefaultSignInExperienceRequest
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.SignInExperienceApi(api_client)
+    check_password_with_default_sign_in_experience_request = py_logto.CheckPasswordWithDefaultSignInExperienceRequest() # CheckPasswordWithDefaultSignInExperienceRequest | 
+
+    try:
+        # Check if a password meets the password policy
+        api_response = api_instance.check_password_with_default_sign_in_experience(check_password_with_default_sign_in_experience_request)
+        print("The response of SignInExperienceApi->check_password_with_default_sign_in_experience:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SignInExperienceApi->check_password_with_default_sign_in_experience: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **check_password_with_default_sign_in_experience_request** | [**CheckPasswordWithDefaultSignInExperienceRequest**](CheckPasswordWithDefaultSignInExperienceRequest.md)|  | 
+
+### Return type
+
+[**CheckPasswordWithDefaultSignInExperience200Response**](CheckPasswordWithDefaultSignInExperience200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The password meets the password policy. |  -  |
+**400** | The password does not meet the password policy or no user ID provided. |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_sign_in_exp**
 > GetSignInExp200Response get_sign_in_exp()
@@ -17,7 +98,7 @@ Get the default sign-in experience settings.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -25,10 +106,10 @@ from py_logto.models.get_sign_in_exp200_response import GetSignInExp200Response
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -36,10 +117,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -67,7 +145,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -94,7 +172,7 @@ Update the default sign-in experience settings with the provided data.
 
 ### Example
 
-* Bearer (JWT) Authentication (ManagementApi):
+* OAuth Authentication (OAuth2):
 
 ```python
 import py_logto
@@ -103,10 +181,10 @@ from py_logto.models.update_sign_in_exp_request import UpdateSignInExpRequest
 from py_logto.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3001
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = py_logto.Configuration(
-    host = "http://localhost:3001"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -114,10 +192,7 @@ configuration = py_logto.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): ManagementApi
-configuration = py_logto.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with py_logto.ApiClient(configuration) as api_client:
@@ -151,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ManagementApi](../README.md#ManagementApi)
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -168,6 +243,85 @@ Name | Type | Description  | Notes
 **403** | Forbidden |  -  |
 **404** | Default sign-in experience settings not found. |  -  |
 **422** | Unprocessable Entity. Invalid data provided. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **upload_custom_ui_assets**
+> UploadCustomUiAssets200Response upload_custom_ui_assets(file=file)
+
+Upload custom UI assets
+
+Upload a zip file containing custom web assets such as HTML, CSS, and JavaScript files, then replace the default sign-in experience with the custom UI assets.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import py_logto
+from py_logto.models.upload_custom_ui_assets200_response import UploadCustomUiAssets200Response
+from py_logto.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = py_logto.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with py_logto.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = py_logto.SignInExperienceApi(api_client)
+    file = None # object | The zip file containing custom web assets such as HTML, CSS, and JavaScript files. (optional)
+
+    try:
+        # Upload custom UI assets
+        api_response = api_instance.upload_custom_ui_assets(file=file)
+        print("The response of SignInExperienceApi->upload_custom_ui_assets:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SignInExperienceApi->upload_custom_ui_assets: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | [**object**](object.md)| The zip file containing custom web assets such as HTML, CSS, and JavaScript files. | [optional] 
+
+### Return type
+
+[**UploadCustomUiAssets200Response**](UploadCustomUiAssets200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An JSON object containing the custom UI assets ID. |  -  |
+**400** | Bad request. The request body is invalid. |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**500** | Failed to unzip or upload the custom UI assets to storage provider. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

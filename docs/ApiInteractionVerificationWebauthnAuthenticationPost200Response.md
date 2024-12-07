@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **challenge** | **str** |  | 
 **timeout** | **float** |  | [optional] 
 **rp_id** | **str** |  | [optional] 
-**allow_credentials** | [**List[ApiInteractionVerificationWebauthnRegistrationPost200ResponseExcludeCredentialsInner]**](ApiInteractionVerificationWebauthnRegistrationPost200ResponseExcludeCredentialsInner.md) |  | [optional] 
+**allow_credentials** | [**List[CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExcludeCredentialsInner]**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExcludeCredentialsInner.md) |  | [optional] 
 **user_verification** | **str** |  | [optional] 
-**extensions** | [**ApiInteractionVerificationWebauthnRegistrationPost200ResponseExtensions**](ApiInteractionVerificationWebauthnRegistrationPost200ResponseExtensions.md) |  | [optional] 
+**extensions** | [**CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExtensions**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExtensions.md) |  | [optional] 
 
 ## Example
 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**phone** | **str** |  | 
-**verification_code** | **str** |  | 
+**connector_id** | **str** |  | 
+**email** | **str** |  | 
 
 ## Example
 

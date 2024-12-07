@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rp** | [**ApiInteractionVerificationWebauthnRegistrationPost200ResponseRp**](ApiInteractionVerificationWebauthnRegistrationPost200ResponseRp.md) |  | 
-**user** | [**ApiInteractionVerificationWebauthnRegistrationPost200ResponseUser**](ApiInteractionVerificationWebauthnRegistrationPost200ResponseUser.md) |  | 
+**rp** | [**CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsRp**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsRp.md) |  | 
+**user** | [**CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsUser**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsUser.md) |  | 
 **challenge** | **str** |  | 
-**pub_key_cred_params** | [**List[ApiInteractionVerificationWebauthnRegistrationPost200ResponsePubKeyCredParamsInner]**](ApiInteractionVerificationWebauthnRegistrationPost200ResponsePubKeyCredParamsInner.md) |  | 
+**pub_key_cred_params** | [**List[CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsPubKeyCredParamsInner]**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsPubKeyCredParamsInner.md) |  | 
 **timeout** | **float** |  | [optional] 
-**exclude_credentials** | [**List[ApiInteractionVerificationWebauthnRegistrationPost200ResponseExcludeCredentialsInner]**](ApiInteractionVerificationWebauthnRegistrationPost200ResponseExcludeCredentialsInner.md) |  | [optional] 
-**authenticator_selection** | [**ApiInteractionVerificationWebauthnRegistrationPost200ResponseAuthenticatorSelection**](ApiInteractionVerificationWebauthnRegistrationPost200ResponseAuthenticatorSelection.md) |  | [optional] 
+**exclude_credentials** | [**List[CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExcludeCredentialsInner]**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExcludeCredentialsInner.md) |  | [optional] 
+**authenticator_selection** | [**CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsAuthenticatorSelection**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsAuthenticatorSelection.md) |  | [optional] 
 **attestation** | **str** |  | [optional] 
-**extensions** | [**ApiInteractionVerificationWebauthnRegistrationPost200ResponseExtensions**](ApiInteractionVerificationWebauthnRegistrationPost200ResponseExtensions.md) |  | [optional] 
+**extensions** | [**CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExtensions**](CreateWebAuthnRegistrationVerification200ResponseRegistrationOptionsExtensions.md) |  | [optional] 
 
 ## Example
 
